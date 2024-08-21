@@ -102,13 +102,13 @@ export default function Leads() {
           <div>
             <div className='flex justify-between mx-3'>
               <div className='flex'>
-                <Image src="/employee_contact.svg" width={50} height={16}></Image>
+                <Image src="/employee_contact.svg" width={50} height={16} alt='employee_contact' />
                 <p className='text-lg font-medium mt-2 mx-2'>ALL Leads</p>
-                <img src="/downarrow.svg" height={15} width={15} />
+                <Image src="/downarrow.svg" height={15} width={15} alt='downarrow.svg' />
               </div>
               <div className='mt-2'>
-                <Button onClick={handleOpen} className='text-white me-1' variant="contained">Create Lead <img src="/whitedownarrow.svg" height={15} width={15} /></Button>
-                <Button className='text-slate-950 border border-slate-500' variant="outlined">Actions <img src="/downarrow.svg" height={15} width={15} /></Button>
+                <Button onClick={handleOpen} className='text-white me-1' variant="contained">Create Lead <Image src="/whitedownarrow.svg" height={15} width={15} alt='white downarrow.svg' /></Button>
+                <Button className='text-slate-950 border border-slate-500' variant="outlined">Actions <Image src="/downarrow.svg" height={15} width={15} alt='downarrow.svg' /></Button>
                 <Modal
                   aria-labelledby="transition-modal-title"
                   aria-describedby="transition-modal-description"
@@ -126,7 +126,7 @@ export default function Leads() {
                     <Box className='rounded-md border-0' sx={style}>
                       <div className='flex justify-between mx-3  p-2'>
                         <div className='flex'>
-                          <Image src="/employee_contact.svg" width={40} height={16}></Image>
+                          <Image src="/employee_contact.svg" width={40} height={16} alt='employee_contact'/>
                           <p className='text-lg font-medium mt-2 mx-2'>Create Leads</p>
                         </div>
                         <div>
@@ -156,8 +156,8 @@ export default function Leads() {
               </Search>
             </div>
             <div className='mt-2 ms-2'>
-              <Button className='text-white border-r-0' variant="contained"><img src="/whiteTable.svg" height={15} width={15} /> Table</Button>
-              <Button className='text-slate-950 border border-slate-500 border-l-0' variant="outlined"><img src="/kanban.svg" height={15} width={15} /> kanban</Button>
+              <Button className='text-white border-r-0' variant="contained"><Image src="/whiteTable.svg" height={15} width={15} alt='whiteTable.svg' /> Table</Button>
+              <Button className='text-slate-950 border border-slate-500 border-l-0' variant="outlined"><Image src="/kanban.svg" height={15} width={15} alt='kanban.svg' /> kanban</Button>
             </div>
           </div>
 

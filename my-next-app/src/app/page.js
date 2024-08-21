@@ -63,7 +63,7 @@ export default function LoginPage() {
         <main>
             <div className="grid items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
                 <div className='md:ms-28 ms-5'>
-                    <img className='md:ms-20 ms-5 mb-10 w-3/4 md:w-auto' src="/skillcapital.png" alt="Logo"></img>
+                    <Image className='mt-24 md:ms-20 ms-5 mb-10 w-3/4 md:w-auto' src="/skillcapital.png" width={350} height={300} alt="Logo"/>
                     <div className='border-inherit border-2 rounded-md shadow-lg p-6 w-full md:w-3/4 mt-5 md:ms-10'>
                         <label className='font-normal text-sm'>User Name</label>
                         <TextField 
@@ -99,11 +99,11 @@ export default function LoginPage() {
                     </div>
                 </div>
                 <div className='w-1.9/3 left-[50%] mt-10'>
-                    <div className='mt-12 ms-15'>
+                    <div className='ms-15 ps-3'>
                         <h1 className='text-3xl font-bold w-3/4 text-center text-customBlue ps-10 ms-4'>Seamlessly manage all learner data in a unified platform.</h1>
                         <p className='text-lg w-3/4 text-center font-light text-customBlue ms-10 lg:ms-14'>Centralize customer data effortlessly. Streamline communication, sales, and support for seamless growth.</p>
                     </div>
-                    <img className='mt-10' src="/pinkcrm.png"></img>
+                    <Image className='mt-10' src="/pinkcrm.png" width={1000} height={500} alt='pinkcrm'/>
                 </div>
             </div>
         </main>

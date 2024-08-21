@@ -20,35 +20,35 @@ export default function Dashboard() {
             <div >
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 p-2 mx-10 '>
                     <div className='flex border-2 border p-2 rounded-lg bg-white shadow-lg shadow-slate-200'>
-                        <Image src='/person.svg' width={50} height={10}></Image>
+                        <Image src='/person.svg' width={50} height={10} alt='person.svg'/>
                         <div className='m-5'>
                             <p style={{ color: '#a8c6df' }}>Not Contacted</p>
                             <p className="text-2xl font-bold text-black">14</p>
                         </div>
                     </div>
                     <div className='flex border-2 border p-2 rounded-lg shadow-lg shadow-slate-200 bg-white'>
-                        <Image src='/person.svg' width={50} height={10}></Image>
+                        <Image src='/person.svg' width={50} height={10} alt='person.svg'/>
                         <div className='m-5'>
                             <p style={{ color: '#a8c6df' }}>Warm Lead</p>
                             <p className="text-2xl font-bold text-black">14</p>
                         </div>
                     </div>
                     <div className='flex border-2 border p-2 rounded-lg shadow-lg shadow-slate-200  bg-white'>
-                        <Image src='/person.svg' width={50} height={10}></Image>
+                        <Image src='/person.svg' width={50} height={10} alt='person.svg'/>
                         <div className='m-5'>
                             <p style={{ color: '#a8c6df' }}>Attempted</p>
                             <p className="text-2xl font-bold text-black">14</p>
                         </div>
                     </div>
                     <div className='flex border-2 border p-2 rounded-lg shadow-lg shadow-slate-200 bg-white'>
-                        <Image src='/person.svg' width={50} height={10}></Image>
+                        <Image src='/person.svg' width={50} height={10} alt='person.svg'/>
                         <div className='m-5'>
                             <p style={{ color: '#a8c6df' }}>Registered</p>
                             <p className="text-2xl font-bold text-black">14</p>
                         </div>
                     </div>
                     <div className='flex border-2 border p-2 rounded-lg shadow-lg shadow-slate-200 bg-white'>
-                        <Image src='/person.svg' width={50} height={10}></Image>
+                        <Image src='/person.svg' width={50} height={10} alt='person.svg'/>
                         <div className='m-5'>
                             <p style={{ color: '#a8c6df' }}>Cold Lead</p>
                             <p className="text-2xl font-bold text-black">14</p>
@@ -60,7 +60,7 @@ export default function Dashboard() {
                 <div className="flex-1 bg-white shadow-lg my-4 lg:ml-10 w-full lg:w-[140%]">
                     <Chart
                         type='line'
-                        width="100%"
+                        width="140%"
                         height="400"
                         series={[
                             {

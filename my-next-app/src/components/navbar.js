@@ -14,6 +14,7 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import Image from 'next/image'
 import Button from '@mui/material/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faUser } from '@fortawesome/free-solid-svg-icons';
@@ -31,8 +32,8 @@ function DrawerAppBar(props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <img className="mx-2 hidden sm:block " src="/button.svg" width={35} alt="button" />
-      <img className='mb-2' src="/skillcapital.png" width={300} height={5} alt="skill capital" />
+      <Image className="mx-2 hidden sm:block " src="/button.svg" width={35} height={5} alt="button" />
+      <Image className='mb-2' src="/skillcapital.png" width={300} height={5} alt="skill capital" />
       <Divider />
       <List>
         {navItems.map((item) => (
@@ -64,8 +65,8 @@ function DrawerAppBar(props) {
             <MenuIcon />
           </IconButton>
 
-          <img className="mx-2" src="/button.svg" width={35} alt="button" />
-          <img src="/skillcapital.png" width={300} height={5} alt="skill capital" style={{ marginRight: 'auto' }} />
+          <Image className="mx-2" src="/button.svg" width={35} height={5} alt="button" />
+          <Image src="/skillcapital.png" width={300} height={5} alt="skill capital" style={{ marginRight: 'auto' }} />
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
               <Button key={item} sx={{ color: '#000000' }} className="nav-item-button hover-bg">
@@ -73,7 +74,7 @@ function DrawerAppBar(props) {
               </Button>
             ))}
           </Box>
-          <img src="/Stars.png" width={40} alt="stars" className="hidden md:block" />
+          <Image src="/Stars.png" width={40} height={5}  alt="stars" className="hidden md:block" />
           <Button className="icon-button"><FontAwesomeIcon icon={faBell} width={23} style={{ color: 'black', fontSize: '24px' }} /></Button>
           <Button className="icon-button"><FontAwesomeIcon icon={faUser} width={23} style={{ color: 'black', fontSize: '24px' }} /></Button>
         </Toolbar>
