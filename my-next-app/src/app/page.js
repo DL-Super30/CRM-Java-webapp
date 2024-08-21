@@ -43,7 +43,7 @@ export default function LoginPage() {
                     "password" : password
                 });
 
-                if (response.status === 200) {
+                if (response.status === 201) {
                     router.push('/dashboard')
                     console.log(response.data);
                     
