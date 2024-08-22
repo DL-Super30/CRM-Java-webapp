@@ -20,35 +20,35 @@ export default function Dashboard() {
             <div >
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 p-2 mx-10 '>
                     <div className='flex border-2 border p-2 rounded-lg bg-white shadow-lg shadow-slate-200'>
-                        <Image src='/person.svg' width={50} height={10} alt='person.svg'/>
+                        <Image src='/person.svg' width={50} height={10} alt='person.svg' />
                         <div className='m-5'>
                             <p style={{ color: '#a8c6df' }}>Not Contacted</p>
                             <p className="text-2xl font-bold text-black">14</p>
                         </div>
                     </div>
                     <div className='flex border-2 border p-2 rounded-lg shadow-lg shadow-slate-200 bg-white'>
-                        <Image src='/person.svg' width={50} height={10} alt='person.svg'/>
+                        <Image src='/person.svg' width={50} height={10} alt='person.svg' />
                         <div className='m-5'>
                             <p style={{ color: '#a8c6df' }}>Warm Lead</p>
                             <p className="text-2xl font-bold text-black">14</p>
                         </div>
                     </div>
                     <div className='flex border-2 border p-2 rounded-lg shadow-lg shadow-slate-200  bg-white'>
-                        <Image src='/person.svg' width={50} height={10} alt='person.svg'/>
+                        <Image src='/person.svg' width={50} height={10} alt='person.svg' />
                         <div className='m-5'>
                             <p style={{ color: '#a8c6df' }}>Attempted</p>
                             <p className="text-2xl font-bold text-black">14</p>
                         </div>
                     </div>
                     <div className='flex border-2 border p-2 rounded-lg shadow-lg shadow-slate-200 bg-white'>
-                        <Image src='/person.svg' width={50} height={10} alt='person.svg'/>
+                        <Image src='/person.svg' width={50} height={10} alt='person.svg' />
                         <div className='m-5'>
                             <p style={{ color: '#a8c6df' }}>Registered</p>
                             <p className="text-2xl font-bold text-black">14</p>
                         </div>
                     </div>
                     <div className='flex border-2 border p-2 rounded-lg shadow-lg shadow-slate-200 bg-white'>
-                        <Image src='/person.svg' width={50} height={10} alt='person.svg'/>
+                        <Image src='/person.svg' width={50} height={10} alt='person.svg' />
                         <div className='m-5'>
                             <p style={{ color: '#a8c6df' }}>Cold Lead</p>
                             <p className="text-2xl font-bold text-black">14</p>
@@ -56,62 +56,64 @@ export default function Dashboard() {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col lg:flex-row mb-3 sm:">
-                <div className="flex-1 bg-white shadow-lg my-4 lg:ml-10 w-full lg:w-[140%]">
-                    <Chart
-                        type='line'
-                        width="140%"
-                        height="400"
-                        series={[
-                            {
-                                name: 'Leads',
-                                data: [0.0, 0.5, 1.0, 1.5, 2.0, null, null, null, null, null, null, null, null, null, null]
-                            }
-                        ]}
-                        options={{
-                            chart: {
-                                id: 'today-leads',
-                                toolbar: {
-                                    show: false
-                                },
-                                margin: {
-                                    bottom: 0
+            <div className="flex flex-col lg:flex-row mb-3">
+                <div className="flex-1 bg-white shadow-lg my-4 w-full lg:ml-10">
+                    <div className="w-full sm:w-[150%]">
+                        <Chart
+                            type='line'
+                            width="100%"
+                            height="250%"
+                            series={[
+                                {
+                                    name: 'Leads',
+                                    data: [0.0, 0.5, 1.0, 1.5, 2.0, null, null, null, null, null, null, null, null, null, null]
                                 }
-                            },
-                            title: {
-                                text: 'Today Leads',
-                                align: 'center',
-                                margin: 20,
-                                offsetY: 0,
-                                style: {
-                                    fontSize: '20px',
-                                    fontWeight: 'normal',
-                                    color: '#263238'
-                                }
-                            },
-                            xaxis: {
-                                categories: ['12am', '1am', '2am', '3am', '4am', '6am', '8am', '10am', '12pm', '2pm', '4pm', '6pm', '8pm', '10pm', '11pm'],
-                                labels: {
-                                    show: true,
-                                    rotate: -45,
-                                    hideOverlappingLabels: false,
-                                    offsetX: 0,
-                                    offsetY: -5
+                            ]}
+                            options={{
+                                chart: {
+                                    id: 'today-leads',
+                                    toolbar: {
+                                        show: false
+                                    },
+                                    margin: {
+                                        bottom: 0
+                                    }
                                 },
-                            },
-                            yaxis: {
-                                tickAmount: 4,
-                                labels: {
-                                    formatter: function (value) {
-                                        if ([0.0, 0.5, 1.0, 1.5, 2.0].includes(value)) {
-                                            return value;
+                                title: {
+                                    text: 'Today Leads',
+                                    align: 'center',
+                                    margin: 20,
+                                    offsetY: 0,
+                                    style: {
+                                        fontSize: '20px',
+                                        fontWeight: 'normal',
+                                        color: '#263238'
+                                    }
+                                },
+                                xaxis: {
+                                    categories: ['12am', '1am', '2am', '3am', '4am', '6am', '8am', '10am', '12pm', '2pm', '4pm', '6pm', '8pm', '10pm', '11pm'],
+                                    labels: {
+                                        show: true,
+                                        rotate: -45,
+                                        hideOverlappingLabels: false,
+                                        offsetX: 0,
+                                        offsetY: -5
+                                    },
+                                },
+                                yaxis: {
+                                    tickAmount: 4,
+                                    labels: {
+                                        formatter: function (value) {
+                                            if ([0.0, 0.5, 1.0, 1.5, 2.0].includes(value)) {
+                                                return value;
+                                            }
+                                            return '';
                                         }
-                                        return '';
                                     }
                                 }
-                            }
-                        }}
-                    />
+                            }}
+                        />
+                    </div>
                 </div>
 
                 <div className='w-96 bg-white p-4 max-h-96 flex-1 flex-col items-center justify-center mt-10 ms-10'>
