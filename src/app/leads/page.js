@@ -116,7 +116,7 @@ const Dashboard = () => {
               className={`flex items-center px-4 py-2 rounded-md border ${viewMode === "kanban" ? "bg-blue-500 text-white" : "text-black"
                 }`}
             >
-              <FaThLarge className="mr-2" />
+              <FaThLarge className="mr-2 " />
               Kanban
             </button>
           </div>
