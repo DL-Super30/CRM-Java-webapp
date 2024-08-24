@@ -9,6 +9,8 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 const LeadStatus = [
   {
@@ -80,7 +82,7 @@ const LeadSource = [
   },
 ];
 
-const Stack = [
+const Stacks = [
   {
     value: "Select Stack",
     label: "Select Stack",
@@ -234,6 +236,7 @@ export default function BasicTextFields() {
   };
   return (
     <Box
+      className="py-5"
       component="form"
       sx={{
         "& > :not(style)": { m: 1, width: "25ch" },
@@ -241,7 +244,7 @@ export default function BasicTextFields() {
       noValidate
       autoComplete="off"
     >
-      <div className="flex justify-between">
+      <div className="flex justify-between py-2">
         <div className="">
           <label htmlFor="name">Name</label>
           <TextField
@@ -272,7 +275,7 @@ export default function BasicTextFields() {
         </div>
       </div>
 
-      <div className="flex justify-between">
+      <div className="flex justify-between py-2">
         <div className="">
           <label htmlFor="cc">CC</label>
           <TextField
@@ -305,7 +308,7 @@ export default function BasicTextFields() {
         </div>
       </div>
 
-      <div className="flex justify-between">
+      <div className="flex justify-between py-2">
         <div className="">
           <label htmlFor="cc">Phone</label>
           <TextField
@@ -327,7 +330,7 @@ export default function BasicTextFields() {
             placeholder="Leads Status"
             InputProps={{ style: { fontWeight: "bold" } }}
           >
-            {Stack.map((option) => (
+            {Stacks.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
@@ -336,7 +339,7 @@ export default function BasicTextFields() {
         </div>
       </div>
 
-      <div className="flex justify-between">
+      <div className="flex justify-between py-2">
         <div className="">
           <label htmlFor="email">Email</label>
           <TextField
@@ -351,7 +354,7 @@ export default function BasicTextFields() {
           <FormControl variant="standard" sx={{ m: 0, minWidth: 120 }}>
             <InputLabel id="demo-multiple-chip-label">Courses</InputLabel>
             <Select
-              className="w-[31.2rem]  border-b-4 border-black-500 "
+              className="w-[31.2rem]  border-b-2 border-gray-400 "
               labelId="demo-multiple-chip-label"
               id="demo-multiple-chip"
               multiple
@@ -390,7 +393,7 @@ export default function BasicTextFields() {
 
         </div>
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-between py-2">
         <div className="">
           <label htmlFor="feequoted">Fee Quoted</label>
           <TextField
@@ -403,8 +406,8 @@ export default function BasicTextFields() {
             defaultValue={1}
             InputProps={{
               inputProps: {
-                min: 0, 
-                step: 1 
+                min: 0,
+                step: 1
               }
             }}
           />
@@ -428,7 +431,7 @@ export default function BasicTextFields() {
           </TextField>
         </div>
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-between py-2">
         <div>
           <label htmlFor="batchtiming">Batch Timing</label>
           <TextField
@@ -470,36 +473,22 @@ export default function BasicTextFields() {
           </TextField>
         </div>
       </div>
-      <div className="flex justify-between">
-        <div>
-          <label htmlFor="batchtiming">Batch Timing</label>
-          <TextField
-            className="me-10"
-            select
-            style={{ width: "31rem" }}
-            id="leadStatus"
-            variant="standard"
-            placeholder="Batch Timing"
-            InputProps={{ style: { fontWeight: "bold" } }}
-            SelectProps={{
-              MenuProps: {
-                PaperProps: {
-                  style: {
-                    maxHeight: 200,
-                    overflowY: 'auto',
-                  },
-                },
-              },
-            }}
-          >
-            {BatchTimings.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-        </div>
+      <div>
+        <label htmlFor="Description">Description</label>
+        <TextField variant="standard" id="fullWidth" style={{ width: "65rem" }} />
       </div>
+
+      
+        <Stack className="flex justify-center  border-b-2 p-2" direction="row" spacing={2} style={{ width: "64rem" }}>
+          <Button variant="outlined" size="large" sx={{ textTransform: 'none' }}>
+            Cancel
+          </Button>
+          <Button variant="contained" size="large" sx={{ textTransform: 'none' }}>
+            Create
+          </Button>
+        </Stack>
+      
+
     </Box>
   );
 }
