@@ -32,6 +32,7 @@ const Search = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(3),
     width: 'auto',
+    maxWidth:'300px',
   },
 }));
 
@@ -86,8 +87,8 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 1100,
-  height: 720,
+  width: '90vw',
+  height: '80vh',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -125,10 +126,10 @@ export default function Leads() {
     <>
       <Navbar />
       <div className='p-3'>
-        <div className='container mx-2 me-10 border-solid border-2 border-slate-300 rounded py-2 pe-2 '>
+        <div className='container mx-2 sm:mx-4 lg:mx-2 border-solid border-2 border-slate-300 rounded py-2 pe-2'>
           <div>
             <div className='flex justify-between mx-3'>
-              <div className='flex'>
+              <div className='flex flex-wrap'>
                 <Image src="/employee_contact.svg" width={50} height={16} alt='employee_contact' />
                 <p className='text-lg font-medium mt-2 mx-2'>ALL Leads</p>
                 <Image src="/downarrow.svg" height={15} width={15} alt='downarrow.svg'
@@ -157,15 +158,15 @@ export default function Leads() {
                   <MenuItem onClick={handleClose2} style={{ borderBottom: "2px solid #E5E5E5" }}>Last Month Leads</MenuItem>
                 </Menu>
               </div>
-              <div className='mt-2'>
-                <Button onClick={handleOpen} className='text-white me-1' variant="contained">Create Lead <Image src="/whitedownarrow.svg" height={15} width={15} alt='white downarrow.svg' /></Button>
+              <div className='flex flex-wrap gap-2 mt-2'>
+                <Button onClick={handleOpen} className='text-white w-full sm:w-auto' variant="contained" size='small'>Create Lead <Image src="/whitedownarrow.svg" height={15} width={15} alt='white downarrow.svg' /></Button>
                 <Button
                   id="fade-button"
                   aria-controls={open1 ? 'fade-menu' : undefined}
                   aria-haspopup="true"
                   aria-expanded={open1 ? 'true' : undefined}
                   onClick={handleClick}
-                  className='text-slate-950 border border-slate-500' variant="outlined">Actions <Image src="/downarrow.svg" height={15} width={15} alt='downarrow.svg' /></Button>
+                  className='text-slate-950 border border-slate-500 w-full sm:w-auto' variant="outlined" size='small'>Actions <Image src="/downarrow.svg" height={15} width={15} alt='downarrow.svg' /></Button>
                 <Menu
                   id="fade-menu"
                   MenuListProps={{
@@ -225,14 +226,14 @@ export default function Leads() {
               </Search>
             </div>
             <div className='mt-2 ms-2'>
-              <Button className='text-white border-r-0' variant="contained" onClick={handleTableViewClick}><Image src="/whiteTable.svg" height={15} width={15} alt='whiteTable.svg' /> Table</Button>
-              <Button className='text-slate-950 border border-slate-500 border-l-0' variant="outlined" onClick={handleKanbanViewClick}><Image src="/kanban.svg" height={15} width={15} alt='kanban.svg' /> kanban</Button>
+              <Button className='text-white border-r-0 w-full sm:w-auto ms-2' variant="contained" onClick={handleTableViewClick}><Image src="/whiteTable.svg" height={15} width={15} alt='whiteTable.svg' /> Table</Button>
+              <Button className='text-slate-950 border border-slate-500 border-l-0 w-full sm:w-auto ' variant="outlined" onClick={handleKanbanViewClick}><Image src="/kanban.svg" height={15} width={15} alt='kanban.svg' /> kanban</Button>
             </div>
           </div>
 
           <div className='p-3'>
             {viewMode === 'table' ? (
-              <div style={{ height: 550, width: '100%' }}>
+              <div className='w-full' style={{ height: '65vh' }}>
                 <DataGrid
                   rows={rows}
                   columns={columns}
@@ -247,35 +248,35 @@ export default function Leads() {
               </div>
             ) : (
               <div>
-                <div className='grid grid-cols-4 gap-4'>
-                  <div className='bg-green-100 p-2 rounded border-4 border-green-100 border-t-green-500'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+                  <div className='bg-green-100 p-4 md:p-2 rounded border-4 border-green-100 border-t-green-500'>
                     <p>Not Contacted</p>
                     <p>₹ 0.00 . Leads</p>
                   </div>
-                  <div className='bg-[#DBEAFE] p-2 rounded border-4 border-[#DBEAFE] border-t-[#93C5FD]'>
+                  <div className='bg-[#DBEAFE] p-4 md:p-2 rounded border-4 border-[#DBEAFE] border-t-[#93C5FD]'>
                     <p>Attempted</p>
                     <p>₹ 0.00 . Leads</p>
                   </div>
-                  <div className='bg-[#FFEDD5] p-2 rounded border-4 border-[#FFEDD5] border-t-[#A8A29E]' >
+                  <div className='bg-[#FFEDD5] p-4 md:p-2 rounded border-4 border-[#FFEDD5] border-t-[#A8A29E]' >
                     <p>Warm Lead</p>
                     <p>₹ 0.00 . Leads</p>
                   </div>
-                  <div className='bg-[#E0E7FF] p-2 rounded border-4 border-[#E0E7FF] border-t-[#94A3B8]'>
+                  <div className='bg-[#E0E7FF] p-4 md:p-2 rounded border-4 border-[#E0E7FF] border-t-[#94A3B8]'>
                     <p>Cold Lead</p>
                     <p>₹ 0.00 . Leads</p>
                   </div>
                 </div>
-                <div className='grid grid-cols-4 gap-4 mt-4'>
-                  <div className='bg-[#E5E7EB] h-[63vh] px-0.5 max-w-96 flex items-center justify-center rounded'>
+                <div className='grid grid-cols-1 mt-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+                  <div className='bg-[#E5E7EB] h-[60vh] p-4 md:p-2 px-0.5 max-w-96 flex items-center justify-center rounded'>
                     <span class="text-sm font-medium">No data found.</span>
                   </div>
-                  <div className='bg-[#E5E7EB] h-[63vh] px-0.5 max-w-96 flex items-center justify-center rounded'>
+                  <div className='bg-[#E5E7EB] h-[60vh] p-4 md:p-2 px-0.5 max-w-96 flex items-center justify-center rounded'>
                     <span class="text-sm font-medium">No data found.</span>
                   </div>
-                  <div className='bg-[#E5E7EB] h-[63vh] px-0.5 max-w-96 flex items-center justify-center rounded'>
+                  <div className='bg-[#E5E7EB] h-[60vh] p-4 md:p-2 px-0.5 max-w-96 flex items-center justify-center rounded'>
                     <span class="text-sm font-medium">No data found.</span>
                   </div>
-                  <div className='bg-[#E5E7EB] h-[63vh] px-0.5 max-w-96 flex items-center justify-center rounded'>
+                  <div className='bg-[#E5E7EB] h-[60vh] p-4 md:p-2 px-0.5 max-w-96 flex items-center justify-center rounded'>
                     <span class="text-sm font-medium">No data found.</span>
                   </div>
                 </div>
