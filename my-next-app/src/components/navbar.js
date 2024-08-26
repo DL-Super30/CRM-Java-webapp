@@ -37,12 +37,14 @@ function DrawerAppBar(props) {
       <Divider />
       <List>
         {navItems.map((item) => (
+          <Link href={item === 'Home' ? '/dashboard' : item === 'Leads' ? '/Leads' : `/${item.toLowerCase()}`} passHref key={item}>
           <ListItem key={item} disablePadding>
             <ListItemButton sx={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }} className='hover-bg'>
               <ListItemText primary={item} sx={{ fontSize: '10px' }} />
               <Image src="/downarrow.svg" height={5} width={10} alt={`${item} dropdown icon`} />
             </ListItemButton>
           </ListItem>
+          </Link>
         ))}
       </List>
     </Box>
@@ -70,10 +72,12 @@ function DrawerAppBar(props) {
           <Image src="/skillcapital.png" width={300} height={150} alt="Skill Capital logo" style={{ marginRight: 'auto' }} />
           <Box sx={{ display: { xs: 'none', sm: 'block', overflow: 'hidden',whiteSpace: 'nowrap',maxWidth: '100%',} }}>
             {navItems.map((item) => (
+              <Link href={item === 'Home' ? '/dashboard' : item === 'Leads' ? '/Leads' : `/${item.toLowerCase()}`} passHref key={item}>
               <Button key={item} sx={{ color: '#000000', fontSize: '17px',marginTop:'12px' }} className="nav-item-button hover-bg ">
                 {item}
                 <Image src="/downarrow.svg" height={5} width={10} alt={`${item} dropdown icon`} />
               </Button>
+              </Link>
             ))}
           </Box>
           <Image src="/Stars.png" width={40} height={10} alt="Star icon" className="hidden md:block mt-2 ms-5" />
