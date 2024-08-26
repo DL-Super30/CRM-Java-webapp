@@ -46,3 +46,6 @@ body {
   background-color: #ffffff !important; /* Replace with your desired color */
 }
 
+.bold-header {
+  font-weight: bold;
+}

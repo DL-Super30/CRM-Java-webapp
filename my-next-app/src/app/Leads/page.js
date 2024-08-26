@@ -12,7 +12,9 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import BasicTextFields from './../../components/input'
-
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { useState } from 'react';
 
 
 
@@ -57,12 +59,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const columns = [
-  { field: 'Created on', headerName: 'Created on', width: 250 },
-  { field: 'Lead Status', headerName: 'Lead Status', width: 250 },
-  { field: 'Name', headerName: 'Name', width: 250 },
-  { field: 'Phone', headerName: 'Phone', width: 250 },
-  { field: 'Stack', headerName: 'Stack', width: 250 },
-  { field: 'Course', headerName: 'Course', width: 250 },
+  { field: 'Created on', headerName: 'Created on', width: 240 },
+  { field: 'Lead Status', headerName: 'Lead Status', width: 240 },
+  { field: 'Name', headerName: 'Name', width: 240 },
+  { field: 'Phone', headerName: 'Phone', width: 240 },
+  { field: 'Stack', headerName: 'Stack', width: 240 },
+  { field: 'Course', headerName: 'Course', width: 200 },
 
 
 ];
@@ -85,7 +87,7 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 1100,
-  height: 725,
+  height: 720,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -94,9 +96,31 @@ const style = {
 
 
 export default function Leads() {
+  const [viewMode, setViewMode] = useState('table');
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open1 = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseForMenu = () => {
+    setAnchorEl(null);
+  };
+
+  const [anchorEl2, setAnchorEl2] = React.useState(null);
+  const open2 = Boolean(anchorEl2);
+  const handleClick2 = (event) => {
+    setAnchorEl2(event.currentTarget);
+  };
+  const handleClose2 = () => {
+    setAnchorEl2(null);
+  };
+
+  const handleTableViewClick = () => setViewMode('table');
+  const handleKanbanViewClick = () => setViewMode('kanban');
+
   return (
     <>
       <Navbar />
@@ -107,11 +131,53 @@ export default function Leads() {
               <div className='flex'>
                 <Image src="/employee_contact.svg" width={50} height={16} alt='employee_contact' />
                 <p className='text-lg font-medium mt-2 mx-2'>ALL Leads</p>
-                <Image src="/downarrow.svg" height={15} width={15} alt='downarrow.svg' />
+                <Image src="/downarrow.svg" height={15} width={15} alt='downarrow.svg'
+                  id="fade-button2"
+                  aria-controls={open2 ? 'fade-menu2' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open2 ? 'true' : undefined}
+                  onClick={handleClick2}
+                  style={{ marginLeft: '20px' }} />
+                <Menu
+                  id="fade-menu2"
+                  MenuListProps={{
+                    'aria-labelledby': 'fade-button2',
+                  }}
+                  anchorEl={anchorEl2}
+                  open={open2}
+                  onClose={handleClose2}
+                  TransitionComponent={Fade}
+                >
+                  <MenuItem onClick={handleClose2} style={{ borderBottom: "2px solid #E5E5E5" }}>All Leads</MenuItem>
+                  <MenuItem onClick={handleClose2} style={{ borderBottom: "2px solid #E5E5E5" }}>My Leads</MenuItem>
+                  <MenuItem onClick={handleClose2} style={{ borderBottom: "2px solid #E5E5E5" }}>Today's Leads</MenuItem>
+                  <MenuItem onClick={handleClose2} style={{ borderBottom: "2px solid #E5E5E5" }}>Yesterday's Leads</MenuItem>
+                  <MenuItem onClick={handleClose2} style={{ borderBottom: "2px solid #E5E5E5" }}>This Week Leads</MenuItem>
+                  <MenuItem onClick={handleClose2} style={{ borderBottom: "2px solid #E5E5E5" }}>This Month Leads</MenuItem>
+                  <MenuItem onClick={handleClose2} style={{ borderBottom: "2px solid #E5E5E5" }}>Last Month Leads</MenuItem>
+                </Menu>
               </div>
               <div className='mt-2'>
                 <Button onClick={handleOpen} className='text-white me-1' variant="contained">Create Lead <Image src="/whitedownarrow.svg" height={15} width={15} alt='white downarrow.svg' /></Button>
-                <Button className='text-slate-950 border border-slate-500' variant="outlined">Actions <Image src="/downarrow.svg" height={15} width={15} alt='downarrow.svg' /></Button>
+                <Button
+                  id="fade-button"
+                  aria-controls={open1 ? 'fade-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open1 ? 'true' : undefined}
+                  onClick={handleClick}
+                  className='text-slate-950 border border-slate-500' variant="outlined">Actions <Image src="/downarrow.svg" height={15} width={15} alt='downarrow.svg' /></Button>
+                <Menu
+                  id="fade-menu"
+                  MenuListProps={{
+                    'aria-labelledby': 'fade-button',
+                  }}
+                  anchorEl={anchorEl}
+                  open={open1}
+                  onClose={handleCloseForMenu}
+                  TransitionComponent={Fade}
+                >
+                  <MenuItem onClick={handleCloseForMenu} >Delete</MenuItem>
+                </Menu>
                 <Modal
                   aria-labelledby="transition-modal-title"
                   aria-describedby="transition-modal-description"
@@ -129,7 +195,7 @@ export default function Leads() {
                     <Box className='rounded-md border-0' sx={style}>
                       <div className='flex justify-between mx-3  p-2'>
                         <div className='flex'>
-                          <Image src="/employee_contact.svg" width={40} height={16} alt='employee_contact'/>
+                          <Image src="/employee_contact.svg" width={40} height={16} alt='employee_contact' />
                           <p className='text-lg font-medium mt-2 mx-2'>Create Leads</p>
                         </div>
                         <div>
@@ -137,7 +203,7 @@ export default function Leads() {
                         </div>
                       </div>
                       <div className='border-t-2 '>
-                      <BasicTextFields/>
+                        <BasicTextFields />
                       </div>
                     </Box>
                   </Fade>
@@ -159,25 +225,64 @@ export default function Leads() {
               </Search>
             </div>
             <div className='mt-2 ms-2'>
-              <Button className='text-white border-r-0' variant="contained"><Image src="/whiteTable.svg" height={15} width={15} alt='whiteTable.svg' /> Table</Button>
-              <Button className='text-slate-950 border border-slate-500 border-l-0' variant="outlined"><Image src="/kanban.svg" height={15} width={15} alt='kanban.svg' /> kanban</Button>
+              <Button className='text-white border-r-0' variant="contained" onClick={handleTableViewClick}><Image src="/whiteTable.svg" height={15} width={15} alt='whiteTable.svg' /> Table</Button>
+              <Button className='text-slate-950 border border-slate-500 border-l-0' variant="outlined" onClick={handleKanbanViewClick}><Image src="/kanban.svg" height={15} width={15} alt='kanban.svg' /> kanban</Button>
             </div>
           </div>
 
           <div className='p-3'>
-            <div style={{ height: 550, width: '100%' }}>
-              <DataGrid
-                rows={rows}
-                columns={columns}
-                initialState={{
-                  pagination: {
-                    paginationModel: { page: 0, pageSize: 5 },
-                  },
-                }}
-                pageSizeOptions={[5, 10]}
-                checkboxSelection
-              />
-            </div>
+            {viewMode === 'table' ? (
+              <div style={{ height: 550, width: '100%' }}>
+                <DataGrid
+                  rows={rows}
+                  columns={columns}
+                  initialState={{
+                    pagination: {
+                      paginationModel: { page: 0, pageSize: 5 },
+                    },
+                  }}
+                  pageSizeOptions={[5, 10]}
+                  checkboxSelection
+                />
+              </div>
+            ) : (
+              <div>
+                <div className='grid grid-cols-4 gap-4'>
+                  <div className='bg-green-100 p-2 rounded border-4 border-green-100 border-t-green-500'>
+                    <p>Not Contacted</p>
+                    <p>₹ 0.00 . Leads</p>
+                  </div>
+                  <div className='bg-[#DBEAFE] p-2 rounded border-4 border-[#DBEAFE] border-t-[#93C5FD]'>
+                    <p>Attempted</p>
+                    <p>₹ 0.00 . Leads</p>
+                  </div>
+                  <div className='bg-[#FFEDD5] p-2 rounded border-4 border-[#FFEDD5] border-t-[#A8A29E]' >
+                    <p>Warm Lead</p>
+                    <p>₹ 0.00 . Leads</p>
+                  </div>
+                  <div className='bg-[#E0E7FF] p-2 rounded border-4 border-[#E0E7FF] border-t-[#94A3B8]'>
+                    <p>Cold Lead</p>
+                    <p>₹ 0.00 . Leads</p>
+                  </div>
+                </div>
+                <div className='grid grid-cols-4 gap-4 mt-4'>
+                  <div className='bg-[#E5E7EB] h-[63vh] px-0.5 max-w-96 flex items-center justify-center rounded'>
+                    <span class="text-sm font-medium">No data found.</span>
+                  </div>
+                  <div className='bg-[#E5E7EB] h-[63vh] px-0.5 max-w-96 flex items-center justify-center rounded'>
+                    <span class="text-sm font-medium">No data found.</span>
+                  </div>
+                  <div className='bg-[#E5E7EB] h-[63vh] px-0.5 max-w-96 flex items-center justify-center rounded'>
+                    <span class="text-sm font-medium">No data found.</span>
+                  </div>
+                  <div className='bg-[#E5E7EB] h-[63vh] px-0.5 max-w-96 flex items-center justify-center rounded'>
+                    <span class="text-sm font-medium">No data found.</span>
+                  </div>
+                </div>
+
+              </div>
+
+            )}
           </div>
 
         </div>

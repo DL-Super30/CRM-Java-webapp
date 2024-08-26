@@ -5,12 +5,14 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import { useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import CancelIcon from '@mui/icons-material/Cancel'; 
 
 const LeadStatus = [
   {
@@ -230,13 +232,15 @@ export default function BasicTextFields() {
       target: { value },
     } = event;
     setPersonName(
-      // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
     );
   };
+
+  const handleDelete = (valueToDelete) => {
+    setPersonName(personName.filter(value => value !== valueToDelete));
+  };
   return (
     <Box
-      className="py-5"
       component="form"
       sx={{
         "& > :not(style)": { m: 1, width: "25ch" },
@@ -246,7 +250,7 @@ export default function BasicTextFields() {
     >
       <div className="flex justify-between py-2">
         <div className="">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name" style={{color:'#A8C6DF'}}>Name</label>
           <TextField
             className="me-10"
             style={{ width: "31rem" }}
@@ -256,7 +260,7 @@ export default function BasicTextFields() {
           />
         </div>
         <div className="">
-          <label htmlFor="leadStatus">Leads Status</label>
+          <label htmlFor="leadStatus" style={{color:'#A8C6DF'}} >Leads Status</label>
           <TextField
             select
             defaultValue="Select Lead Status"
@@ -277,7 +281,7 @@ export default function BasicTextFields() {
 
       <div className="flex justify-between py-2">
         <div className="">
-          <label htmlFor="cc">CC</label>
+          <label htmlFor="cc" style={{color:'#A8C6DF'}}>CC</label>
           <TextField
             className="me-10"
             defaultValue="91"
@@ -289,7 +293,7 @@ export default function BasicTextFields() {
           />
         </div>
         <div className="">
-          <label htmlFor="leadsource">Leads Source</label>
+          <label htmlFor="leadsource" style={{color:'#A8C6DF'}}>Leads Source</label>
           <TextField
             select
             defaultValue="Select Lead Source"
@@ -310,7 +314,7 @@ export default function BasicTextFields() {
 
       <div className="flex justify-between py-2">
         <div className="">
-          <label htmlFor="cc">Phone</label>
+          <label htmlFor="phone" style={{color:'#A8C6DF'}} >Phone</label>
           <TextField
             className="me-10"
             style={{ width: "31rem" }}
@@ -320,7 +324,7 @@ export default function BasicTextFields() {
           />
         </div>
         <div className="">
-          <label htmlFor="stack">Stack</label>
+          <label htmlFor="stack" style={{color:'#A8C6DF'}}>Stack</label>
           <TextField
             select
             defaultValue="Select Stack"
@@ -341,61 +345,77 @@ export default function BasicTextFields() {
 
       <div className="flex justify-between py-2">
         <div className="">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email" style={{color:'#A8C6DF'}}>Email</label>
           <TextField
             className="me-10"
             style={{ width: "31rem" }}
             id="phone"
             variant="standard"
-            placeholder="Phone"
+            placeholder="Email"
           />
         </div>
-        <div className="">
-          <FormControl variant="standard" sx={{ m: 0, minWidth: 120 }}>
-            <InputLabel id="demo-multiple-chip-label">Courses</InputLabel>
-            <Select
-              className="w-[31.2rem]  border-b-2 border-gray-400 "
-              labelId="demo-multiple-chip-label"
-              id="demo-multiple-chip"
-              multiple
-              value={personName}
-              onChange={handleChange}
-              input={
-                <OutlinedInput
-                  id="select-multiple-chip"
-                  sx={{
-                    '& .MuiOutlinedInput-notchedOutline': {
-                      border: 'none',
-                    },
-                  }}
-                />
-              }
-              renderValue={(selected) => (
+        <div>
+          <label htmlFor="courses" style={{color:'#A8C6DF'}}>Courses</label>  
+          <TextField
+            className="me-10"
+            select
+            style={{ width: "31.2rem" }}
+            id="courses"
+            variant="standard"
+            placeholder="Courses"
+            value={personName}
+            onChange={handleChange}
+            InputProps={{
+              style: { fontWeight: "bold" },
+              inputComponent: OutlinedInput, 
+            }}
+            SelectProps={{
+              multiple: true,
+              renderValue: (selected) => (
                 <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                   {selected.map((value) => (
-                    <Chip key={value} label={value} />
+                    <Chip
+                    key={value}
+                    label={value}
+                    onDelete={() => handleDelete(value)}
+                    deleteIcon={<CancelIcon sx={{ color: '#fff' }} />} // White "x" button
+                    sx={{ backgroundColor: '#007bff', color: '#fff' }} // Blue background, white text
+                  />
                   ))}
                 </Box>
-              )}
-              MenuProps={MenuProps}
-            >
-              {names.map((name) => (
-                <MenuItem
-                  key={name}
-                  value={name}
-                  style={getStyles(name, personName, theme)}
-                >
-                  {name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-
+              ),
+              MenuProps: {
+                PaperProps: {
+                  style: {
+                    maxHeight: 200,
+                    overflowY: 'auto',
+                  },
+                },
+              },
+            }}
+            sx={{
+              '& .MuiOutlinedInput-notchedOutline': {
+                border: 'none',
+                borderBottom: '2px solid #cacaca',
+              },
+            }}
+          >
+            {names.map((name) => (
+              <MenuItem
+                key={name}
+                value={name}
+                style={getStyles(name, personName, theme)}
+              >
+                {name}
+              </MenuItem>
+            ))}
+          </TextField>
         </div>
+
       </div>
       <div className="flex justify-between py-2">
         <div className="">
-          <label htmlFor="feequoted">Fee Quoted</label>
+          <label htmlFor="feequoted" style={{color:'#A8C6DF'}}>Fee Quoted</label>
           <TextField
             className="me-10"
             style={{ width: "31rem" }}
@@ -413,7 +433,7 @@ export default function BasicTextFields() {
           />
         </div>
         <div className="">
-          <label htmlFor="leadStatus">Class Mode</label>
+          <label htmlFor="leadStatus" style={{color:'#A8C6DF'}}>Class Mode</label>
           <TextField
             select
             defaultValue="Select Class Mode"
@@ -432,10 +452,10 @@ export default function BasicTextFields() {
         </div>
       </div>
       <div className="flex justify-between py-2">
-        <div>
-          <label htmlFor="batchtiming">Batch Timing</label>
+        <div className="">
+          <label htmlFor="batchtiming" style={{color:'#A8C6DF'}}>Batch Timing</label>
           <TextField
-            className="me-10"
+            className="me-10 mt-5"
             select
             style={{ width: "31rem" }}
             id="leadStatus"
@@ -461,33 +481,43 @@ export default function BasicTextFields() {
           </TextField>
         </div>
         <div className="">
-          <label htmlFor="nextfollowup">Next FollowUp</label>
-          <TextField
-            select
-            style={{ width: "31rem" }}
-            id="Next Followup"
-            variant="standard"
-            placeholder="Leads Status"
-            InputProps={{ style: { fontWeight: "bold" } }}
-          >
-          </TextField>
+          <label htmlFor="nextfollowup" style={{color:'#A8C6DF'}}>Next FollowUp</label>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={['DateTimePicker']}>
+              <DateTimePicker
+                variant="standard"
+                label="Next FollowUp"
+                className="w-[31.5rem] "
+                sx={{
+                  '.MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      border: 'none',
+                      marginBottom: '9px',
+                      marginTop: '20px',
+                      borderBottom: '2px solid #cacaca',
+                    },
+                  },
+                }}
+              />
+            </DemoContainer>
+          </LocalizationProvider>
         </div>
       </div>
       <div>
-        <label htmlFor="Description">Description</label>
+        <label htmlFor="Description" style={{color:'#A8C6DF'}}>Description</label>
         <TextField variant="standard" id="fullWidth" style={{ width: "65rem" }} />
       </div>
 
-      
-        <Stack className="flex justify-center  border-b-2 p-2" direction="row" spacing={2} style={{ width: "64rem" }}>
-          <Button variant="outlined" size="large" sx={{ textTransform: 'none' }}>
-            Cancel
-          </Button>
-          <Button variant="contained" size="large" sx={{ textTransform: 'none' }}>
-            Create
-          </Button>
-        </Stack>
-      
+
+      <Stack className="flex justify-center  border-b-2 " direction="row" spacing={2} style={{ width: "64rem" }}>
+        <Button variant="outlined" size="large" sx={{ textTransform: 'none' }}>
+          Cancel
+        </Button>
+        <Button variant="contained" size="large" sx={{ textTransform: 'none' }}>
+          Create
+        </Button>
+      </Stack>
+
 
     </Box>
   );
