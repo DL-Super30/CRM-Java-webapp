@@ -95,7 +95,7 @@ export default function LoginPage() {
                             <Checkbox {...label} />
                             <span className='text-slate-600'>Remember Me</span>
                         </div>
-                        <p className=' text-slate-600 text-center mt-20'>©2024, All rights reserved</p>
+                        <p className=' text-slate-600 text-center mt-20'>&copy;2024, All rights reserved</p>
                     </div>
                 </div>
                 <div className='w-1.9/3 left-[50%] mt-10'>
