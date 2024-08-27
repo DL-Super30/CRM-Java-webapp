@@ -1,6 +1,26 @@
+"use client";
+
 import Image from "next/image";
 
+import { useEffect, useState } from "react";
+import axios from 'axios';
+import { currentUsers } from "@/lib/userDetails";
+
+
+
 const Navbar = () => {
+
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const data = await currentUsers();
+      setUser(data);
+
+      fetchUser();
+    };
+  }, [])
+
   return (
     <div className="flex items-center justify-between p-4">
       {/* SEARCH BAR */}
