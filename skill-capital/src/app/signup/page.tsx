@@ -1,74 +1,131 @@
 "use client";
-
-import { useEffect, useState } from "react";
 import axios from "axios";
-import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-const SignupPage = () => {
-  const apiUrl = process.env.NEXT_PUBLC_API_URL;
+const SignUp = () => {
 
-  const router = useRouter();
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-    role: "",
-  });
+    const router = useRouter()
 
-  const [buttonDisabled, setButtonDisabled] = useState(false);
+    const apiUrl = process.env.NEXT_PUBLIC_LIVE_URL;
+    console.log(apiUrl)
 
-  const [loading, setLoading] = useState(false);
 
-  const onSignup = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.post(`${apiUrl}/api/v1/auth/sign-up`, user);
-      console.log("Signup success", response.data);
-      router.push("/login");
-    } catch (error: any) {
-      console.log("Signup failed");
-      toast.error(error.message);
-    }
-  };
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [usernameError, setUsernameError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [loginError, setLoginError] = useState('');
 
-  useEffect(() => {
-    if (user.email.length > 1 && user.password.length > 1) {
-      setButtonDisabled(false);
-    } else {
-      setButtonDisabled(true);
-    }
-  }, [user]);
+    const handleLogin = async () => {
+        let hasError = false;
+        if (username === '') {
+            setUsernameError('Please enter username');
+            hasError = true;
+        } else {
+            setUsernameError('');
+        }
+        if (password === '') {
+            setPasswordError('Please enter password');
+            hasError = true;
+        } else {
+            setPasswordError('');
+        }
+        if (!hasError) {
+            try {
+                const response = await axios.post(`${apiUrl}/api/v1/auth/sign-up`, {
+                    "name" : username,
+                    "lastname" : password,
+                    "email" : username,
+                    "password" : password,
+                    "role": 0,
+                    
+                });
+
+                if (response.status === 200) {
+                    router.push('/dashboard')
+                    console.log(response.data);
+                    
+                }
+            } catch (error) {
+                
+                    console.error('Error response:');
+                    setLoginError('Invalid username or password');
+                
+            }
+        }
+    };
+
 
   return (
-    <div className="flex flex-col min-h-screen items-center justify-center py-2">
-      <h1>{loading ? "Processing" : "Signup"} </h1>
-      <hr />
-      <label htmlFor="email">Email</label>
-      <input
-        className="p-2 border-gray-300 rouned-lg mb-4 focus:outline-none focus:border-gray-600 "
-        id="email"
-        value={user.email}
-        type="text"
-        onChange={(e) => setUser({ ...user, email: e.target.value })}
-      />
-
-      <label htmlFor="password">Password</label>
-      <input
-        id="password"
-        value={user.password}
-        type="password"
-        onChange={(e) => setUser({ ...user, password: e.target.value })}
-      />
-
-      <label htmlFor="email">Role</label>
-      <input
-        id="role"
-        value={user.role}
-        type="text"
-        onChange={(e) => setUser({ ...user, role: e.target.value })}
-      />
-    </div>
+    <section className="h-screen flex flex-col bg-lamaPurple md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
+      <div className="md:w-2/3 max-w-md bg-white rounded-md py-16 px-8 flex flex-col gap-4">
+      
+        <h1 className="text-2xl font-semibold text-center pb-10">Welcome</h1>
+        <input
+          className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full "
+          type="text"
+          id="name"
+          placeholder="First Name"
+          
+        />
+        <input
+          className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full "
+          type="text"
+          id="lastname"
+          placeholder="Last Name"
+          
+        />
+        <input
+          className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full "
+          type="text"
+          id="username"
+          placeholder="Email Address"
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        {usernameError && <div style={{ color: '#E22449',fontSize:'15px' }}>{usernameError}</div>}
+        <input
+          className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full  "
+          type="password"
+          id="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+         {passwordError && <div style={{ color: '#E22449',fontSize:'15px' }}>{passwordError}</div>}
+        <div className="mt-4 flex justify-between font-semibold text-sm">
+          <label className="flex text-slate-500 hover:text-slate-600 cursor-pointer">
+            <input className="mr-1" type="checkbox" />
+            <span>Remember Me</span>
+          </label>
+          <a
+            className="text-blue-500 hover:text-blue-600 hover:underline hover:underline-offset-4"
+            href="#"
+          >
+            Forgot Password?
+          </a>
+        </div>
+        <div className=" w-full">
+          <button
+            className="mt-4 w-full bg-blue-500 hover:bg-blue-600 px-4 py-2 text-white uppercase rounded text-xs tracking-wider"
+            type="submit"
+            onClick={handleLogin}
+          >
+            Register
+          </button>
+          {loginError && <div style={{ color: '#E22449', fontSize: '15px' }}>{loginError}</div>}
+        </div>
+        <div className="mt-4 font-semibold text-sm text-slate-500 text-center md:text-left">
+          Already have an account?{" "}
+          <a
+            className="text-red-400 hover:underline hover:underline-offset-4"
+            href="#"
+          >
+            Login
+          </a>
+        </div>
+      </div>
+    </section>
   );
 };
 
-export default SignupPage;
+export default SignUp;
