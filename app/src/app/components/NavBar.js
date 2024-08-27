@@ -55,17 +55,17 @@ const NavBar = () => {
             )}
           </li>
           <li>
-            <Link href="/about" legacyBehavior>
+            <Link href="/lead" legacyBehavior>
               <a className="text-black hover:text-pink-400">Leads</a>
             </Link>
           </li>
           <li>
-            <Link href="/contact" legacyBehavior>
+            <Link href="/oppurtunity" legacyBehavior>
               <a className="text-black hover:text-pink-400">Oppurtunities</a>
             </Link>
           </li>
           <li>
-            <Link href="/contact" legacyBehavior>
+            <Link href="/learner" legacyBehavior>
               <a className="text-black hover:text-pink-400">Learners</a>
             </Link>
           </li>

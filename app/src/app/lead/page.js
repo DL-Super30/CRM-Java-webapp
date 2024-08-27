@@ -344,8 +344,8 @@ function Leads() {
                                                 <option value="">Select Lead Status</option>
                                                 <option value="status1">Not Contacted</option>
                                                 <option value="status2">Attempted</option>
-                                                <option value="status">Warm Lead</option>
-                                                <option value="status2">Cold Lead</option>
+                                                <option value="status3">Warm Lead</option>
+                                                <option value="status4">Cold Lead</option>
                                             </select>
                                             {/* <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Stack</label>
                                             <select className='border-0 border-b focus:border-b-black focus:outline-none bg-white  text-lg font-medium text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full'>
@@ -372,8 +372,8 @@ function Leads() {
                                                 <option value="">Select Lead Status</option>
                                                 <option value="status1">NotContacted</option>
                                                 <option value="status2">Attempted</option>
-                                                <option value="status">WarmLead</option>
-                                                <option value="status2">ColdLead</option>
+                                                <option value="status3">WarmLead</option>
+                                                <option value="status4">ColdLead</option>
                                             </select>
                                             <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Lead Source</label>
                                             <select className='border-0 border-b focus:border-b-black focus:outline-none bg-white  text-lg font-medium text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full'>
@@ -412,9 +412,10 @@ function Leads() {
                                             <input type='text' placeholder='Course' className='border-0 border-b focus:border-b-black focus:outline-none bg-white hover:bg-blue-50 text-lg font-semibold text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full' />
                                             <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Class Mode</label>
                                             <select className='border-0 border-b focus:border-b-black focus:outline-none bg-white  text-lg font-medium text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full'>
-                                                <option value="">Lead Source Code</option>
-                                                <option value="mode1">None</option>
-                                                <option value="mode2">Ready To Join</option>
+                                                <option value="">HYDClassRoom</option>
+                                                <option value="mode1">BLRClassRoom</option>
+                                                <option value="mode2">IndiaOnline</option>
+                                                <option value="mode3">InternationalOnline</option>
                                             </select>
                                             <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Next Followup</label>
                                             <div className='relative'>
