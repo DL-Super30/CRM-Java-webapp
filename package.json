@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@mui/x-data-grid": "^7.14.0",
-    "react-datepicker": "^7.3.0"
-  }
-}
