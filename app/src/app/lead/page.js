@@ -370,25 +370,25 @@ function Leads() {
                                             <label className='block font-medium text-base text-[#A8C6DF]'>Lead Status</label>
                                             <select className='border-0 border-b focus:border-b-black focus:outline-none bg-white  text-lg font-medium text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full'>
                                                 <option value="">Select Lead Status</option>
-                                                <option value="status1">Not Contacted</option>
+                                                <option value="status1">NotContacted</option>
                                                 <option value="status2">Attempted</option>
-                                                <option value="status">Warm Lead</option>
-                                                <option value="status2">Cold Lead</option>
+                                                <option value="status">WarmLead</option>
+                                                <option value="status2">ColdLead</option>
                                             </select>
                                             <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Lead Source</label>
                                             <select className='border-0 border-b focus:border-b-black focus:outline-none bg-white  text-lg font-medium text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full'>
                                                 <option value="">Select Lead Source</option>
                                                 <option value="source1">None</option>
-                                                <option value="source2">Walk In</option>
-                                                <option value="status2">Student Referal</option>
+                                                <option value="source2">WalkIn</option>
+                                                <option value="status2">StudentReferal</option>
                                                 <option value="status2">Demo</option>
                                                 <option value="status2">Website</option>
-                                                <option value="status2">Website Chat</option>
-                                                <option value="status2">Inbound Call</option>
-                                                <option value="status2">Google Adworks</option>
-                                                <option value="status2">Facebook Ads</option>
-                                                <option value="status2">Google My Business</option>
-                                                <option value="status2">WhatsApp Skill Capital</option>
+                                                <option value="status2">WebsiteChat</option>
+                                                <option value="status2">InboundCall</option>
+                                                <option value="status2">GoogleAdworks</option>
+                                                <option value="status2">FacebookAds</option>
+                                                <option value="status2">GoogleMyBusiness</option>
+                                                <option value="status2">WhatsAppSkillCapital</option>
                                             </select>
                                             {/* <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Stack</label>
                                             <select className='border-0 border-b focus:border-b-black focus:outline-none bg-white  text-lg font-medium text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full'>
