@@ -11,7 +11,7 @@ import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-import BasicTextFields from './../../components/input'
+import TableData from './../../components/input'
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
@@ -229,7 +229,7 @@ export default function Leads() {
                         </div>
                       </div>
                       <div className='border-t-2 '>
-                        <BasicTextFields />
+                        <TableData />
                       </div>
                     </Box>
                   </Fade>
