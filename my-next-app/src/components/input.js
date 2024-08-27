@@ -378,8 +378,8 @@ export default function BasicTextFields() {
                     key={value}
                     label={value}
                     onDelete={() => handleDelete(value)}
-                    deleteIcon={<CancelIcon sx={{ color: '#fff' }} />} // White "x" button
-                    sx={{ backgroundColor: '#007bff', color: '#fff' }} // Blue background, white text
+                    deleteIcon={<CancelIcon sx={{ color: '#fff' }} />} 
+                    sx={{ backgroundColor: '#007bff', color: '#fff' }} 
                   />
                   ))}
                 </Box>

@@ -60,26 +60,51 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const columns = [
-  { field: 'Created on', headerName: 'Created on', width: 240 },
-  { field: 'Lead Status', headerName: 'Lead Status', width: 240 },
+  { field: 'Createdon', headerName: 'Created on', width: 240 },
+  { field: 'LeadStatus', headerName: 'Lead Status', width: 240 },
   { field: 'Name', headerName: 'Name', width: 240 },
   { field: 'Phone', headerName: 'Phone', width: 240 },
-  { field: 'Stack', headerName: 'Stack', width: 240 },
-  { field: 'Course', headerName: 'Course', width: 200 },
+  { field: 'Stack', headerName: 'Stack', width: 240,
+    renderCell: (params) => (
+      <Button
+        variant="contained"
+        sx={{
+          textTransform: 'none',
+          borderRadius: '20px',
+          paddingRight: '30px',
+          paddingLeft: '30px',
+          color: params.value === 'Life Skills' ? 'black' : params.value === 'Study Abroad' ? 'black' : 'black',
+          backgroundColor: params.value === 'Life Skills' ? '#F76C00' : params.value === 'Study Abroad' ? '#EFB701' : '#EFB701',
+        }}
+      >
+        {params.value}
+      </Button>
+    ) 
+   },
+  { field: 'ClassMode', headerName: 'Class Mode', width: 200,
+    renderCell: (params) => (
+      <Button
+        variant="contained"
+        sx={{
+          textTransform: 'none',
+          borderRadius: '20px',
+          paddingRight: '30px',
+          paddingLeft: '30px',
+          color: params.value === 'HYD ClassRoom' ? 'black' : params.value === 'BLR ClassRoom' ? 'black' : 'black',
+          backgroundColor: params.value === 'HYD ClassRoom' ? '#818bf8' : params.value === 'BLR ClassRoom' ? '#C6C6F7' : '#C6C6F7',
+        }}
+      >
+        {params.value}
+      </Button>
+    ) 
+   },
 
 
 ];
 
 const rows = [
-  // { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  // { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  // { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  // { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  // { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  // { id: 6, lastName: 'Melisandre', firstName: null, age: 250 },
-  // { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  // { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  // { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+  {id:1, Createdon: '26/8/2024', LeadStatus: 'Attempted', Name: 'Nikhil', Phone: 9874563210, Stack:'Life Skills',ClassMode:'HYD ClassRoom' },
+  {id:2, Createdon: '27/8/2024', LeadStatus: 'Attempted', Name: 'Akhil', Phone: 8745632109, Stack:'Study Aboard',ClassMode:'BLR ClassRoom' }
 ];
 
 const style = {
@@ -87,8 +112,8 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '90vw',
-  height: '80vh',
+  width: '72vw',
+  height: '98vh',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
