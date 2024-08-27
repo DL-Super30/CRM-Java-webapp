@@ -15,7 +15,6 @@ export default function LoginPage() {
     const router = useRouter()
 
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [usernameError, setUsernameError] = useState('');
@@ -90,12 +89,12 @@ export default function LoginPage() {
                         >
                             Login
                         </Button>
-                        {loginError && <div style={{ color: '#E22449', fontSize: '15px' }}>{loginError}</div>}
+                        {loginError && <div style={{ color: '#E22449', fontSize:'15px' }}>{loginError}</div>}
                         <div className='flex items-center'>
                             <Checkbox {...label} />
                             <span className='text-slate-600'>Remember Me</span>
                         </div>
-                        <p className=' text-slate-600 text-center mt-20'>&copy;2024, All rights reserved</p>
+                        <p className=' text-slate-600 text-center mt-20'>2024, All rights reserved</p>
                     </div>
                 </div>
                 <div className='w-1.9/3 left-[50%] mt-10'>

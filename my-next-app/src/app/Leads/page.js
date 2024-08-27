@@ -16,9 +16,6 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
 
-
-
-
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -176,8 +173,8 @@ export default function Leads() {
                 >
                   <MenuItem onClick={handleClose2} style={{ borderBottom: "2px solid #E5E5E5" }}>All Leads</MenuItem>
                   <MenuItem onClick={handleClose2} style={{ borderBottom: "2px solid #E5E5E5" }}>My Leads</MenuItem>
-                  <MenuItem onClick={handleClose2} style={{ borderBottom: "2px solid #E5E5E5" }}>Today's Leads</MenuItem>
-                  <MenuItem onClick={handleClose2} style={{ borderBottom: "2px solid #E5E5E5" }}>Yesterday's Leads</MenuItem>
+                  <MenuItem onClick={handleClose2} style={{ borderBottom: "2px solid #E5E5E5" }}>Todays Leads</MenuItem>
+                  <MenuItem onClick={handleClose2} style={{ borderBottom: "2px solid #E5E5E5" }}>Yesterdays Leads</MenuItem>
                   <MenuItem onClick={handleClose2} style={{ borderBottom: "2px solid #E5E5E5" }}>This Week Leads</MenuItem>
                   <MenuItem onClick={handleClose2} style={{ borderBottom: "2px solid #E5E5E5" }}>This Month Leads</MenuItem>
                   <MenuItem onClick={handleClose2} style={{ borderBottom: "2px solid #E5E5E5" }}>Last Month Leads</MenuItem>
@@ -293,10 +290,10 @@ export default function Leads() {
                 </div>
                 <div className='grid grid-cols-1 mt-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
                   <div className='bg-[#E5E7EB] h-[60vh] p-4 md:p-2 px-0.5 max-w-96 flex items-center justify-center rounded'>
-                    <span class="text-sm font-medium">No data found.</span>
+                    <span className="text-sm font-medium">No data found.</span>
                   </div>
                   <div className='bg-[#E5E7EB] h-[60vh] p-4 md:p-2 px-0.5 max-w-96 flex items-center justify-center rounded'>
-                    <span class="text-sm font-medium">No data found.</span>
+                    <span className="text-sm font-medium">No data found.</span>
                   </div>
                   <div className='bg-[#E5E7EB] h-[60vh] p-4 md:p-2 px-0.5 max-w-96 flex items-center justify-center rounded'>
                     <span class="text-sm font-medium">No data found.</span>
