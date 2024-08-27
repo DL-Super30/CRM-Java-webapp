@@ -11,7 +11,7 @@ import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 
 
 
-function Leads() {
+function Learner() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isCreateLeadsOpen, setIsCreateLeadsOpen] = useState(false)
 
@@ -155,7 +155,7 @@ function Leads() {
                                 <Menu as="div" className="relative inline-block text-left">
                                     <div>
                                         <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md  px-3 py-2 text-2xl font-medium text-gray-900 items-center">
-                                            All Leads
+                                            My Learners
                                             <ChevronDownIcon aria-hidden="true" className="-mr-1 h-10 w-9 font-light text-gray-900" />
                                         </MenuButton>
                                     </div>
@@ -170,7 +170,7 @@ function Leads() {
                                                     href="#"
                                                     className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 border-b border-b-neutral-300 bg-neutral-200"
                                                 >
-                                                    All Leads
+                                                    My Learners
                                                 </a>
                                             </MenuItem>
                                             <MenuItem>
@@ -178,25 +178,7 @@ function Leads() {
                                                     href="#"
                                                     className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900  border-b border-b-neutral-300"
                                                 >
-                                                    My Leads
-                                                </a>
-                                            </MenuItem>
-                                        </div>
-                                        <div className="py-1">
-                                            <MenuItem>
-                                                <a
-                                                    href="#"
-                                                    className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900  border-b border-b-neutral-300"
-                                                >
-                                                    Todays Leads
-                                                </a>
-                                            </MenuItem>
-                                            <MenuItem>
-                                                <a
-                                                    href="#"
-                                                    className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900  border-b border-b-neutral-300"
-                                                >
-                                                    Yesterday's Leads
+                                                    Todays Learners
                                                 </a>
                                             </MenuItem>
                                         </div>
@@ -206,7 +188,7 @@ function Leads() {
                                                     href="#"
                                                     className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900  border-b border-b-neutral-300"
                                                 >
-                                                    This Week Leads
+                                                    Yesterdays Learners
                                                 </a>
                                             </MenuItem>
                                             <MenuItem>
@@ -214,7 +196,25 @@ function Leads() {
                                                     href="#"
                                                     className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900  border-b border-b-neutral-300"
                                                 >
-                                                    This Month Leads
+                                                    This Week Learners
+                                                </a>
+                                            </MenuItem>
+                                        </div>
+                                        <div className="py-1">
+                                            <MenuItem>
+                                                <a
+                                                    href="#"
+                                                    className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900  border-b border-b-neutral-300"
+                                                >
+                                                    This Month Learners
+                                                </a>
+                                            </MenuItem>
+                                            <MenuItem>
+                                                <a
+                                                    href="#"
+                                                    className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900  border-b border-b-neutral-300"
+                                                >
+                                                    Last Month Learners
                                                 </a>
                                             </MenuItem>
                                         </div>
@@ -224,7 +224,7 @@ function Leads() {
                                                     href="#"
                                                     className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
                                                 >
-                                                    Last Month Leads
+                                                    All learners
                                                 </a>
                                             </MenuItem>
                                         </div>
@@ -236,7 +236,7 @@ function Leads() {
                             <button
                                 onClick={() => setIsCreateLeadsOpen(true)}
                                 className="inline-flex items-center px-4 h-8 justify-center rounded-md bg-[#0176D3] p-1 text-sm font-normal leading-6 text-white">
-                                Create Lead
+                                Create Oppurtunity
                                 <span className="ml-2 inline-block">
                                     <img className='inline-block align-middle' alt="down arrow" loading="lazy" width="16" height="16" decoding="async" data-nimg="1" src="https://crm.skill-capital.com/_next/static/media/whitedownarrow.25a55fea.svg"></img>
                                 </span>
@@ -272,11 +272,12 @@ function Leads() {
                     <div className='search-container mt-3 flex items-center relative gap-3'>
                         <input type='text' placeholder='Search' className='search-input p-4 px-9 pl-10 h-8 rounded-md border border-[#969492] pl-8 p-1.5 text-gray-900' />
                         <i className="fa-solid fa-magnifying-glass search-icon absolute left-3 text-slate-400"></i>
-                        <div class="inline-flex rounded-md shadow-sm" role="group">
-                            <button type="button" class="inline-flex gap-2 items-center px-4 py-1 text-sm font-normal border border-[#747474] focus:border-transparent' transition duration-700 rounded-s-lg bg-[#0176D3] text-[#FFFFFF]">Not Contacted <p class="bg-rose-600 py-1 px-2.5 rounded-full">0</p></button>
-                            <button type="button" class="inline-flex gap-2 items-center px-4 py-1 text-sm font-normal border border-[#747474] focus:border-transparent' transition duration-700  text-gray-900 bg-transparent">Attempted <p class="bg-rose-600 py-1 px-2.5 rounded-full">0</p></button>
-                            <button type="button" class="inline-flex gap-2 items-center px-4 py-1 text-sm font-normal border border-[#747474] focus:border-transparent' transition duration-700  text-gray-900 bg-transparent">Warm Lead <p class="bg-rose-600 py-1 px-2.5 rounded-full">0</p></button><button type="button" class="inline-flex gap-2 items-center px-4 py-1 text-sm font-normal border border-[#747474] focus:border-transparent' transition duration-700 rounded-e-lg text-gray-900 bg-transparent">Cold Lead <p class="bg-rose-600 py-1 px-2.5 rounded-full">0</p></button>
-                        </div>
+                        {/* <div class="inline-flex rounded-md shadow-sm" role="group">
+                            <button type="button" class="inline-flex gap-2 items-center px-4 py-1 text-sm font-normal border border-[#747474] focus:border-transparent' transition duration-700 rounded-s-lg bg-[#0176D3] text-[#FFFFFF]">Visiting <p class="bg-rose-600 py-1 px-2.5 rounded-full">0</p></button>
+                            <button type="button" class="inline-flex gap-2 items-center px-4 py-1 text-sm font-normal border border-[#747474] focus:border-transparent' transition duration-700  text-gray-900 bg-transparent">Visited <p class="bg-rose-600 py-1 px-2.5 rounded-full">0</p></button>
+                            <button type="button" class="inline-flex gap-2 items-center px-4 py-1 text-sm font-normal border border-[#747474] focus:border-transparent' transition duration-700  text-gray-900 bg-transparent">Demo Attended <p class="bg-rose-600 py-1 px-2.5 rounded-full">0</p></button>
+                            <button type="button" class="inline-flex gap-2 items-center px-4 py-1 text-sm font-normal border border-[#747474] focus:border-transparent' transition duration-700  text-gray-900 bg-transparent">Lost Oppurtunity <p class="bg-rose-600 py-1 px-2.5 rounded-full">0</p></button>
+                        </div> */}
                         <div class="inline-flex rounded-md shadow-sm" role="group">
                             <button type="button" class="inline-flex gap-2 items-center px-4 py-2 text-sm font-normal border border-[#747474] rounded-s-lg focus:border-transparent transition duration-700 bg-[#0176D3] text-[#FFFFFF]">
                                 <img alt="Table icon" width="16" height="16" src="https://crm.skill-capital.com/_next/static/media/whiteTable.fafaee25.svg" />
@@ -306,16 +307,12 @@ function Leads() {
                                 <div className='first-row-h flex justify-between items-center pb-4'>
                                     <div className='flex items-center gap-4 mb-2'>
                                         <img src='https://crm.skill-capital.com/_next/static/media/employee_contact.2d215fd6.svg' />
-                                        <p>Create Leads</p>
+                                        <p>Create Opportunities</p>
                                     </div>
                                     <div>
-                                    <i 
-                                    onClick={() => setIsCreateLeadsOpen(false)}
-                                    className="fa-solid fa-circle-xmark px-2 py-2 cursor-pointer rounded-sm"></i>
-                    
                                         <i
                                             onClick={() => setIsCreateLeadsOpen(false)}
-                                            className="fa-solid fa-xmark text-black  px-2 py-2 cursor-pointer rounded-lg hover:bg-gray-200 hover:text-black"></i>
+                                            className="fa-solid fa-xmark text-xl text-slate-400 px-2 py-2 cursor-pointer rounded-lg hover:bg-gray-200 hover:text-black"></i>
                                     </div>
                                 </div>
                                 <div className='second-div border-b border-t py-5'>
@@ -347,58 +344,57 @@ function Leads() {
                                                 <option value="status">Warm Lead</option>
                                                 <option value="status2">Cold Lead</option>
                                             </select>
-                                            {/* <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Stack</label>
+                                            <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Stack</label>
                                             <select className='border-0 border-b focus:border-b-black focus:outline-none bg-white  text-lg font-medium text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full'>
                                                 <option value="">Select Stack</option>
                                                 <option value="status1">Life Skills</option>
                                                 <option value="status2">Study Abroad</option>
                                                 <option value="status">HR</option>
-                                            </select> */}
+                                            </select>
 
-                                            {/* <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Class Mode</label>
+                                            <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Class Mode</label>
                                             <select className='border-0 border-b focus:border-b-black focus:outline-none bg-white  text-lg font-medium text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full'>
                                                 <option value="">Select Class Mode</option>
                                                 <option value="status1">International Online</option>
                                                 <option value="status2">India Online</option>
                                                 <option value="status">BLR Classroom</option>
                                                 <option value="status">HYD Classroom</option>
-                                            </select> */}
+                                            </select>
 
                                             
                                         </div>
                                         <div className='w-1/2 pl-4'>
-                                            <label className='block font-medium text-base text-[#A8C6DF]'>Lead Status</label>
+                                            <label className='block font-medium text-base text-[#A8C6DF]'>Oppurtunity Status</label>
                                             <select className='border-0 border-b focus:border-b-black focus:outline-none bg-white  text-lg font-medium text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full'>
-                                                <option value="">Select Lead Status</option>
-                                                <option value="status1">Not Contacted</option>
-                                                <option value="status2">Attempted</option>
-                                                <option value="status">Warm Lead</option>
-                                                <option value="status2">Cold Lead</option>
+                                                <option value="">Select Oppurtunity Status</option>
+                                                <option value="status1">Visiting</option>
+                                                <option value="status2">Visited</option>
+                                                <option value="status">Demo attended</option>
+                                                <option value="status2">Lost Oppurtunity</option>
                                             </select>
-                                            <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Lead Source</label>
+                                            <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Oppurtunity Stage</label>
                                             <select className='border-0 border-b focus:border-b-black focus:outline-none bg-white  text-lg font-medium text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full'>
-                                                <option value="">Select Lead Source</option>
+                                                <option value="">Select Oppurtunity Stage</option>
                                                 <option value="source1">None</option>
-                                                <option value="source2">Walk In</option>
-                                                <option value="status2">Student Referal</option>
-                                                <option value="status2">Demo</option>
-                                                <option value="status2">Website</option>
-                                                <option value="status2">Website Chat</option>
-                                                <option value="status2">Inbound Call</option>
-                                                <option value="status2">Google Adworks</option>
-                                                <option value="status2">Facebook Ads</option>
-                                                <option value="status2">Google My Business</option>
-                                                <option value="status2">WhatsApp Skill Capital</option>
+                                                <option value="source2">Advanced Discussion</option>
+                                                <option value="status2">Ready To Join</option>
+                                                <option value="status2">Visited</option>
+                                                <option value="status2">Fees Negotiation</option>
+                                                <option value="status2">Batch Allocation</option>
+                                                <option value="status2">Intrested in Demo</option>
+                                                <option value="status2">Need time this Week</option>
                                             </select>
-                                            {/* <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Stack</label>
+                                            <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Demo Attended Stage</label>
                                             <select className='border-0 border-b focus:border-b-black focus:outline-none bg-white  text-lg font-medium text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full'>
-                                                <option value="">Select Stack</option>
-                                                <option value="stack1">Life Skills</option>
-                                                <option value="stack2">Study Abroad</option>
-                                                <option value="stack2">HR</option>
-                    
-                                            </select> */}
-                                            {/* <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Visited Stage</label>
+                                                <option value="">Select Demo Attended Stage</option>
+                                                <option value="stack1">None</option>
+                                                <option value="stack2">Ready To Join</option>
+                                                <option value="stack2">Advanced Discussion</option>
+                                                <option value="stack2">Call Not Answered</option>
+                                                <option value="stack2">Visiting</option>
+                                                <option value="stack2">Fans Negotiation</option>
+                                            </select>
+                                            <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Visited Stage</label>
                                             <select className='border-0 border-b focus:border-b-black focus:outline-none bg-white  text-lg font-medium text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full'>
                                                 <option value="">Select Visited Page</option>
                                                 <option value="stack1">None</option>
@@ -407,7 +403,7 @@ function Leads() {
                                                 <option value="stack2">Fees Negotiation</option>
                                                 <option value="stack2">Batch Allocation</option>
                                                 <option value="stack2">Fans Negotiation</option>
-                                            </select> */}
+                                            </select>
                                             <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Course</label>
                                             <input type='text' placeholder='Course' className='border-0 border-b focus:border-b-black focus:outline-none bg-white hover:bg-blue-50 text-lg font-semibold text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full' />
                                             <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Class Mode</label>
@@ -468,4 +464,4 @@ function Leads() {
     )
 }
 
-export default Leads;
+export default Learner;

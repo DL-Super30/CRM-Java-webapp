@@ -85,7 +85,7 @@ const NavBar = () => {
             </Link>
           </li>
           <div className="flex items-center space-x-4">
-          <Image src="/stars.png" alt="Logo" width={20} height={20} />
+          <Image src="/christmas-stars.png" alt="Logo" width={20} height={20} />
 
           <Image src="/bell (1).png" alt="Logo" width={20} height={20} />
           <Image src="/user (9).png" alt="Logo" width={20} height={20} />

@@ -1,82 +1,129 @@
-// pages/login.js
-import Head from 'next/head'
-
-export default function Login() {
+"use client";
+import * as React from "react";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Checkbox from "@mui/material/Checkbox";
+import { useState } from "react";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
+export default function LoginPage() {
+  const router = useRouter();
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [loginError, setLoginError] = useState("");
+  const handleLogin = async () => {
+    let hasError = false;
+    if (username === "") {
+      setUsernameError("Please enter username");
+      hasError = true;
+    } else {
+      setUsernameError("");
+    }
+    if (password === "") {
+      setPasswordError("Please enter password");
+      hasError = true;
+    } else {
+      setPasswordError("");
+    }
+    if (!hasError) {
+      try {
+        const response = await axios.post(`${apiUrl}/login`, {
+          username: username,
+          password: password,
+        });
+        if (response.status === 201) {
+          router.push("/home");
+          console.log(response.data);
+        }
+      } catch (error) {
+        if (error.response && error.response.status === 401) {
+          console.error("Error response:", error.response);
+          setLoginError("Invalid username or password");
+        } else {
+          setLoginError("An error occurred. Please try again.");
+        }
+      }
+    }
+  };
   return (
-    <div className="flex items-center justify-start min-h-screen  bg-white 100">
-      <Head>
-        <title>Login</title>
-        <meta name="description" content="Login page" />
-      </Head>
-      <div className="mt-1">
-          {/* Image */}
-          <img src="/image (1).png" alt="Logo" className="w-400 h-55 absolute left-5 top-5" /></div>
-          <div className="flex items-center justify-center w-full md:w-auto">
-          {/* Image */}
-          <img src="background.png" alt="Logo" className="max-h-screen w-400 absolute right-8 top-0" /></div>
-      <div className="w-full max-w-md p-8 space-y-8 ml-10 bg-white rounded-lg shadow-lg">
-        <div>
-          <h2 className="text-2xl font-bold text-center">Sign in to your account</h2>
-        </div>
-        <form className="mt-8 space-y-6">
-          <div className="rounded-md shadow-sm">
-            <div>
-              <label htmlFor="email" className="sr-only">Email address</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="Email address"
-              />
-            </div>
-            <div className="mt-4">
-              <label htmlFor="password" className="sr-only">Password</label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="Password"
-              />
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <input
-                id="remember_me"
-                name="remember_me"
-                type="checkbox"
-                className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
-              />
-              <label htmlFor="remember_me" className="block ml-2 text-sm text-gray-900">
-                Remember me
-              </label>
-            </div>
-
-            <div className="text-sm">
-              <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                Forgot your password?
-              </a>
-            </div>
-          </div>
-
-          <div>
-            <button
-              type="submit"
-              className="w-full px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-yellow-300 to-pink-500  w-full"
+    <main>
+      <div className="grid items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+        <div className="md:ms-28 ms-5">
+          <img
+            className="md:ms-20 ms-5 mb-10 w-3/4 md:w-auto"
+            src="https://crm.skill-capital.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fskillcapital.41121682.png&w=640&q=75"
+            alt="Logo"
+          ></img>
+          <div className="border-inherit border-2 rounded-md shadow-lg p-6 w-full md:w-3/4 mt-5 md:ms-10">
+            <label className="font-normal text-sm">User Name</label>
+            <TextField
+              fullWidth
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            {usernameError && (
+              <div style={{ color: "#E22449", fontSize: "15px" }}>
+                {usernameError}
+              </div>
+            )}
+            <label className="font-normal text-sm">Password</label>
+            <TextField
+              type="password"
+              fullWidth
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {passwordError && (
+              <div style={{ color: "#E22449", fontSize: "15px" }}>
+                {passwordError}
+              </div>
+            )}
+            <Button
+              fullWidth
+              variant="contained"
+              className="mt-10 mb-5 bg-gradient-to-r from-orange-300 to-pink-500"
+              onClick={handleLogin}
             >
-              Sign in
-            </button>
+              Login
+            </Button>
+            {loginError && (
+              <div style={{ color: "#E22449", fontSize: "15px" }}>
+                {loginError}
+              </div>
+            )}
+            <div className="flex items-center">
+              <Checkbox {...label} />
+              <span className="text-slate-600">Remember Me</span>
+            </div>
+            <p className="text-slate-600 text-center mt-20">
+              ©2024, All rights reserved
+            </p>
           </div>
-          <p  className='justify-center ml-12'>&#169; All Rights are reserverd</p>
-        </form>
+        </div>
+        <div className="w-1.9/3 left-[50%] mt-10">
+          <div className="mt-12 ms-15">
+            <h1 className="text-3xl font-bold w-3/4 text-center text-customBlue ps-10 ms-4">
+              Seamlessly manage all learner data in a unified platform.
+            </h1>
+            <p className="text-lg w-3/4 text-center font-light text-customBlue ms-10 lg:ms-14">
+              Centralize customer data effortlessly. Streamline communication,
+              sales, and support for seamless growth.
+            </p>
+          </div>
+          <img
+            className="mt-10"
+            src="https://crm.skill-capital.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fpinkcrm.d54abf0d.png&w=3840&q=75"
+            alt="CRM Illustration"
+          ></img>
+        </div>
       </div>
-    </div>
-  )
+    </main>
+  );
 }
