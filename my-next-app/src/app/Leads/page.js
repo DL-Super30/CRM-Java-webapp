@@ -14,7 +14,8 @@ import Fade from '@mui/material/Fade';
 import TableData from './../../components/input'
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -29,7 +30,7 @@ const Search = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(3),
     width: 'auto',
-    maxWidth:'300px',
+    maxWidth: '300px',
   },
 }));
 
@@ -61,7 +62,8 @@ const columns = [
   { field: 'LeadStatus', headerName: 'Lead Status', width: 240 },
   { field: 'Name', headerName: 'Name', width: 240 },
   { field: 'Phone', headerName: 'Phone', width: 240 },
-  { field: 'Stack', headerName: 'Stack', width: 240,
+  {
+    field: 'Stack', headerName: 'Stack', width: 240,
     renderCell: (params) => (
       <Button
         variant="contained"
@@ -76,9 +78,10 @@ const columns = [
       >
         {params.value}
       </Button>
-    ) 
-   },
-  { field: 'ClassMode', headerName: 'Class Mode', width: 200,
+    )
+  },
+  {
+    field: 'ClassMode', headerName: 'Class Mode', width: 200,
     renderCell: (params) => (
       <Button
         variant="contained"
@@ -93,15 +96,10 @@ const columns = [
       >
         {params.value}
       </Button>
-    ) 
-   },
+    )
+  },
 
 
-];
-
-const rows = [
-  {id:1, Createdon: '26/8/2024', LeadStatus: 'Attempted', Name: 'Nikhil', Phone: 9874563210, Stack:'Life Skills',ClassMode:'HYD ClassRoom' },
-  {id:2, Createdon: '27/8/2024', LeadStatus: 'Attempted', Name: 'Akhil', Phone: 8745632109, Stack:'Study Aboard',ClassMode:'BLR ClassRoom' }
 ];
 
 const style = {
@@ -119,6 +117,32 @@ const style = {
 
 
 export default function Leads() {
+  const [data, setData] = useState([]);
+
+  
+  useEffect(() => { 
+    const fetchData = async () => { 
+      try {
+        const token = localStorage.getItem('jwtToken');  
+        if (!token) {  
+          throw new Error('No token found');
+        }
+
+        const response = await axios.get('http://localhost:8080/leads/getAllLeads', {  
+          headers: {
+            Authorization: `Bearer ${token}`,  
+          },
+        });
+
+        setData(response.data); 
+
+      } catch (error) {
+        console.error('Error fetching data:', error);  
+      }
+    };
+    fetchData(); 
+  }, []);
+  console.log(data);
   const [viewMode, setViewMode] = useState('table');
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -257,7 +281,15 @@ export default function Leads() {
             {viewMode === 'table' ? (
               <div className='w-full' style={{ height: '65vh' }}>
                 <DataGrid
-                  rows={rows}
+                 rows={data.map((item, index) => ({  
+                  id: index,
+                  Createdon: item.nextFollowUp,
+                  LeadStatus: item.leadStatus,
+                  Name: item.name,
+                  Phone: item.phone,
+                  Stack: item.stack,
+                  ClassMode: item.classmode,
+                }))}
                   columns={columns}
                   initialState={{
                     pagination: {
