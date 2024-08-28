@@ -43,9 +43,9 @@ export default function LoginPage() {
                 });
 
                 if (response.status === 201) {
+                    const jwtToken = response.data;
+                    localStorage.setItem('jwtToken',jwtToken)
                     router.push('/dashboard')
-                    console.log(response.data);
-                    
                 }
             } catch (error) {
                 if (error.response && error.response.status === 401) {
