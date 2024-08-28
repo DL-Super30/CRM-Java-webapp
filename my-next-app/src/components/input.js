@@ -20,19 +20,19 @@ const LeadStatus = [
     label: "Select Lead Status",
   },
   {
-    value: "USD",
+    value: "NotContacted",
     label: "Not Contacted",
   },
   {
-    value: "EUR",
+    value: "Attempted",
     label: "Attempted",
   },
   {
-    value: "BTC",
+    value: "WarmLead",
     label: "Warm Lead",
   },
   {
-    value: "JPY",
+    value: "ColdLead",
     label: "Cold Lead",
   },
 ];
@@ -47,11 +47,11 @@ const LeadSource = [
     label: "None",
   },
   {
-    value: "Walk In",
+    value: "WalkIn",
     label: "Walk In",
   },
   {
-    value: "Student Referal",
+    value: "StudentReferal",
     label: "Student Referal",
   },
   {
@@ -59,28 +59,32 @@ const LeadSource = [
     label: "Demo",
   },
   {
-    value: "Website",
+    value: "WebSite",
     label: "Website",
   },
   {
-    value: "USD",
+    value: "WebsiteChat",
     label: "Website Chat",
   },
   {
-    value: "EUR",
+    value: "InboundCall",
     label: "Inbound Call",
   },
   {
-    value: "BTC",
+    value: "GoogleAdWords",
     label: "Google AdWords",
   },
   {
-    value: "Facebook Ads",
+    value: "FacebookAds",
     label: "Facebook Ads",
   },
   {
-    value: "JPY",
+    value: "WhatsAppDigitalLync",
     label: "WhatsApp - Skill Capital",
+  },
+  {
+    value: "GoogleMyBusiness",
+    label: "Google My Business",
   },
 ];
 
@@ -90,15 +94,15 @@ const Stacks = [
     label: "Select Stack",
   },
   {
-    value: "BTC",
+    value: "LifeSkills",
     label: "Life Skills",
   },
   {
-    value: "Facebook Ads",
+    value: "StudyAboard",
     label: "Study Aboard",
   },
   {
-    value: "JPY",
+    value: "HR",
     label: "HR",
   },
 ];
@@ -109,19 +113,19 @@ const ClassMode = [
     label: "Select Class Mode",
   },
   {
-    value: "International Online",
+    value: "InternationalOnline",
     label: "International Online",
   },
   {
-    value: "India Online",
+    value: "IndiaOnline",
     label: "India Online",
   },
   {
-    value: "BLR ClassRoom",
+    value: "BLRClassRoom",
     label: "BLR ClassRoom",
   },
   {
-    value: "HYD ClassRoom",
+    value: "HYDClassRoom",
     label: "HYD ClassRoom",
   },
 
@@ -129,56 +133,61 @@ const ClassMode = [
 
 const BatchTimings = [
   {
-    value: "Select Class Mode",
+    value: "SEVEN_AM_TO_EIGHT_AM",
     label: "7AM-8AM",
   },
   {
-    value: "International Online",
+    value: "EIGHT_AM_TO_NINE_AM",
     label: "8AM-9AM",
   },
   {
-    value: "India Online",
+    value: "NINE_AM_TO_TEN_AM",
     label: "9AM-10AM",
   },
   {
-    value: "BLR ClassRoom",
+    value: "TEN_AM_TO_ELEVEN_AM",
+    label: "10AM-11AM",
+  },
+  {
+    value: "ELEVEN_AM_TO_TWELVE_PM",
     label: "11AM-12AM",
   },
   {
-    value: "HYD ClassRoom",
+    value: "TWELVE_PM_TO_ONE_PM",
     label: "12PM-1PM",
   },
   {
-    value: "1PM-2PM",
+    value: "ONE_PM_TO_TWO_PM",
     label: "1PM-2PM",
   },
   {
-    value: "2PM-3PM",
+    value: "TWO_PM_TO_THREE_PM",
     label: "2PM-3PM",
   },
   {
-    value: "3PM-4PM",
+    value: "THREE_PM_TO_FOUR_PM",
     label: "3PM-4PM",
   },
   {
-    value: "4PM-5PM",
+    value: "FOUR_PM_TO_FIVE_PM",
     label: "4PM-5PM",
   },
   {
-    value: "6PM-7PM",
+    value: "FIVE_PM_TO_SIX_PM",
+    label: "5PM-6PM",
+  },
+  {
+    value: "SIX_PM_TO_SEVEN_PM",
     label: "6PM-7PM",
   },
   {
-    value: "7PM-8PM",
+    value: "SEVEN_PM_TO_EIGHT_PM",
     label: "7PM-8PM",
   },
   {
-    value: "8PM-9PM",
+    value: "EIGHT_PM_TO_NINE_PM",
     label: "8PM-9PM",
   },
-
-
-
 ]
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -192,26 +201,27 @@ const MenuProps = {
 };
 
 const names = [
-  "HR Business Partner",
-  "HR Generalist Core HR",
-  "HR Analytics",
-  "Spoken English",
-  "Public Speaking",
-  "Communication Skills",
-  "Soft Skills",
-  "Personality Development",
+  "HRManager",
+  "HRBusinessPartner",
+  "HRGeneralistCoreHR",
+  "HRAnalytics",
+  "SpokenEnglish",
+  "PublicSpeaking",
+  "CommunicationSkills",
+  "SoftSkills",
+  "PersonalityDevelopment",
   "Aptitude",
   "IELTS",
   "TOEFL",
   "PTE",
   "GRE",
   "GMAT",
-  "Recruitment Specialist",
-  "Payroll Specialist",
-  "Learning and Development",
+  "RecruitmentSpecialist",
+  "PayrollSpecialist",
+  "LearningAndDevelopment",
   "Others",
   "Finance",
-  "Competitive Exams",
+  "CompetitiveExams",
 ];
 
 function getStyles(name, courses, theme) {
@@ -226,32 +236,32 @@ export default function BasicTextFields() {
 
   const [name, setName] = React.useState("");
   const [leadStatus, setLeadStatus] = React.useState("Select Lead Status");
-  const [cc, setCc] = React.useState("91");
+  const [cc, setCc] = React.useState(91);
   const [leadSource, setLeadSource] = React.useState("Select Lead Source");
-  const [phone, setPhone] = React.useState("");
+  const [phone, setPhone] = React.useState();
   const [stack, setStack] = React.useState("Select Stack");
   const [email, setEmail] = React.useState("");
-  const [feeQuoted, setFeeQuoted] = React.useState(0);
-  const [classMode, setClassMode] = React.useState("Select Class Mode");
-  const [batchTiming, setBatchTiming] = React.useState("Select Class Mode");
+  const [feeQuoted, setFeeQuoted] = React.useState();
+  const [classmode, setclassmode] = React.useState("Select Class Mode");
+  const [batchTiming, setBatchTiming] = React.useState("");
   const [nextFollowUp, setNextFollowUp] = React.useState(null);
   const [description, setDescription] = React.useState("");
 
   const handleCreate = () => {
     const formData = {
       name,
-      leadStatus,
       cc,
-      leadSource,
-      phone,
-      stack,
+      phone: phone ? parseInt(phone) : null,
       email,
-      feeQuoted,
-      classMode,
-      batchTiming,
+      feeQuoted: feeQuoted ? parseInt(feeQuoted) : null,
       nextFollowUp: nextFollowUp ? nextFollowUp.format('YYYY-MM-DD HH:mm:ss') : null,
       description,
-      courses: courses,
+      batchTiming,
+      leadStatus,
+      leadSource,
+      stack,
+      courses: courses, 
+      classmode,
     };
   
     console.log(JSON.stringify(formData, null, 2));
@@ -474,7 +484,6 @@ export default function BasicTextFields() {
             type="number"
             value={feeQuoted}
             onChange={(e) => setFeeQuoted(e.target.value)}
-            defaultValue={1}
             InputProps={{
               inputProps: {
                 min: 0,
@@ -484,16 +493,16 @@ export default function BasicTextFields() {
           />
         </div>
         <div className="">
-          <label htmlFor="classMode" style={{ color: '#A8C6DF' }}>Class Mode</label>
+          <label htmlFor="classmode" style={{ color: '#A8C6DF' }}>Class Mode</label>
           <TextField
             select
             defaultValue="Select Class Mode"
             style={{ width: "31rem" }}
-            id="classMode"
+            id="classmode"
             variant="standard"
             placeholder="Leads Status"
-            value={classMode}
-            onChange={(e) => setClassMode(e.target.value)}
+            value={classmode}
+            onChange={(e) => setclassmode(e.target.value)}
             InputProps={{ style: { fontWeight: "bold" } }}
           >
             {ClassMode.map((option) => (
