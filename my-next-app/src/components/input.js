@@ -13,6 +13,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import CancelIcon from '@mui/icons-material/Cancel';
+import axios from 'axios'; 
 
 const LeadStatus = [
   {
@@ -247,7 +248,7 @@ export default function BasicTextFields() {
   const [nextFollowUp, setNextFollowUp] = React.useState(null);
   const [description, setDescription] = React.useState("");
 
-  const handleCreate = () => {
+  const handleCreate = async () => {
     const formData = {
       name,
       cc,
@@ -265,6 +266,27 @@ export default function BasicTextFields() {
     };
   
     console.log(JSON.stringify(formData, null, 2));
+
+    try {
+      const token = localStorage.getItem('jwtToken');
+      if (!token) {  
+        throw new Error('No token found');
+      }
+      console.log(token);
+      // Send a POST request to the API with the formData
+      const response = await axios.post('http://localhost:8080/leads/createLead', formData,{  
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',  
+        },
+      });
+
+      // Handle successful response
+      console.log('Data submitted successfully:', response.data);
+    } catch (error) {
+      // Handle errors
+      console.error('Error submitting data:', error);
+    }
   };
   
 
