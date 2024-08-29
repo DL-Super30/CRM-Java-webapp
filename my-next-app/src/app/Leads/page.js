@@ -64,21 +64,30 @@ const columns = [
   { field: 'Phone', headerName: 'Phone', width: 240 },
   {
     field: 'Stack', headerName: 'Stack', width: 240,
-    renderCell: (params) => (
-      <Button
-        variant="contained"
-        sx={{
-          textTransform: 'none',
-          borderRadius: '20px',
-          paddingRight: '30px',
-          paddingLeft: '30px',
-          color: params.value === 'Life Skills' ? 'black' : params.value === 'Study Abroad' ? 'black' : 'black',
-          backgroundColor: params.value === 'Life Skills' ? '#F76C00' : params.value === 'Study Abroad' ? '#EFB701' : '#EFB701',
-        }}
-      >
-        {params.value}
-      </Button>
-    )
+    renderCell: (params) => {
+      console.log("Stack value:", params.value); 
+      return (
+        <Button
+          variant="contained"
+          sx={{
+            textTransform: 'none',
+            borderRadius: '20px',
+            paddingRight: '30px',
+            paddingLeft: '30px',
+            color: 'black',
+            backgroundColor: params.value === 'LifeSkills'
+              ? '#F76C00'
+              : params.value === 'StudyAboard'
+                ? '#EFB701'
+                : params.value === 'HR'
+                  ? '#A8C6DF'
+                  : '#D3D3D3',
+          }}
+        >
+          {params.value}
+        </Button>
+      );
+    }
   },
   {
     field: 'ClassMode', headerName: 'Class Mode', width: 200,
@@ -90,8 +99,8 @@ const columns = [
           borderRadius: '20px',
           paddingRight: '30px',
           paddingLeft: '30px',
-          color: params.value === 'HYD ClassRoom' ? 'black' : params.value === 'BLR ClassRoom' ? 'black' : 'black',
-          backgroundColor: params.value === 'HYD ClassRoom' ? '#818bf8' : params.value === 'BLR ClassRoom' ? '#C6C6F7' : '#C6C6F7',
+          color:'black',
+          backgroundColor: params.value === 'HYDClassRoom' ? '#818bf8' : params.value === 'BLRClassRoom' ? '#C6C6F7' : params.value === 'InternationalOnline' ? 'rgb(243,92,244)' : '#D3D3D3',
         }}
       >
         {params.value}
@@ -142,6 +151,7 @@ export default function Leads() {
     };
     fetchData();
   }, []);
+
   const handleRowSelection = (selection) => {
     if (selection.length > 0) {
       setSelectedRowId(selection[0]);
