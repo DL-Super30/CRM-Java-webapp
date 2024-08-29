@@ -142,9 +142,7 @@ export default function Leads() {
             Authorization: `Bearer ${token}`,
           },
         });
-
         setData(response.data);
-
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -157,15 +155,6 @@ export default function Leads() {
       setSelectedRowId(selection[0]);
     } else {
       setSelectedRowId(null);
-    }
-  };
-
-  const handleDisplayRowData = () => {
-    const selectedRowData = data.find((row, index) => index === selectedRowId);
-    if (selectedRowData) {
-      console.log(selectedRowData);
-    } else {
-      console.log('No row selected');
     }
   };
 
@@ -188,11 +177,12 @@ export default function Leads() {
           Authorization: `Bearer ${token}`,
         },
       });
-
+      
       // After successful deletion from the backend, update the UI
       const updatedData = data.filter((row, index) => index !== selectedRowId);
       setData(updatedData);
       setSelectedRowId(null);
+      window.location.reload();
 
     } catch (error) {
       console.error('Error deleting data:', error);
