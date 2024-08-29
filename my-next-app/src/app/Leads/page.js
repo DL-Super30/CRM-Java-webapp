@@ -118,30 +118,76 @@ const style = {
 
 export default function Leads() {
   const [data, setData] = useState([]);
+  const [selectedRowId, setSelectedRowId] = useState(null);
 
-  
-  useEffect(() => { 
-    const fetchData = async () => { 
+  useEffect(() => {
+    const fetchData = async () => {
       try {
-        const token = localStorage.getItem('jwtToken');  
-        if (!token) {  
+        const token = localStorage.getItem('jwtToken');
+        if (!token) {
           throw new Error('No token found');
         }
 
-        const response = await axios.get('http://localhost:8080/leads/getAllLeads', {  
+        const response = await axios.get('http://localhost:8080/leads/getAllLeads', {
           headers: {
-            Authorization: `Bearer ${token}`,  
+            Authorization: `Bearer ${token}`,
           },
         });
 
-        setData(response.data); 
+        setData(response.data);
 
       } catch (error) {
-        console.error('Error fetching data:', error);  
+        console.error('Error fetching data:', error);
       }
     };
-    fetchData(); 
+    fetchData();
   }, []);
+  const handleRowSelection = (selection) => {
+    if (selection.length > 0) {
+      setSelectedRowId(selection[0]);
+    } else {
+      setSelectedRowId(null);
+    }
+  };
+
+  const handleDisplayRowData = () => {
+    const selectedRowData = data.find((row, index) => index === selectedRowId);
+    if (selectedRowData) {
+      console.log(selectedRowData);
+    } else {
+      console.log('No row selected');
+    }
+  };
+
+  const handleDelete = async () => {
+    const selectedRowData = data.find((row, index) => index === selectedRowId);
+
+    if (!selectedRowData) {
+      console.error('No row selected for deletion');
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem('jwtToken');
+      if (!token) {
+        throw new Error('No token found');
+      }
+
+      await axios.delete(`http://localhost:8080/leads/${selectedRowData.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      // After successful deletion from the backend, update the UI
+      const updatedData = data.filter((row, index) => index !== selectedRowId);
+      setData(updatedData);
+      setSelectedRowId(null);
+
+    } catch (error) {
+      console.error('Error deleting data:', error);
+    }
+  };
   console.log(data);
   const [viewMode, setViewMode] = useState('table');
   const [open, setOpen] = React.useState(false);
@@ -223,7 +269,10 @@ export default function Leads() {
                   onClose={handleCloseForMenu}
                   TransitionComponent={Fade}
                 >
-                  <MenuItem onClick={handleCloseForMenu} >Delete</MenuItem>
+                  <MenuItem onClick={() => {
+                    handleCloseForMenu();
+                    handleDelete();
+                  }} >Delete</MenuItem>
                 </Menu>
                 <Modal
                   aria-labelledby="transition-modal-title"
@@ -281,15 +330,15 @@ export default function Leads() {
             {viewMode === 'table' ? (
               <div className='w-full' style={{ height: '65vh' }}>
                 <DataGrid
-                 rows={data.map((item, index) => ({  
-                  id: index,
-                  Createdon: item.nextFollowUp,
-                  LeadStatus: item.leadStatus,
-                  Name: item.name,
-                  Phone: item.phone,
-                  Stack: item.stack,
-                  ClassMode: item.classmode,
-                }))}
+                  rows={data.map((item, index) => ({
+                    id: index,
+                    Createdon: item.nextFollowUp,
+                    LeadStatus: item.leadStatus,
+                    Name: item.name,
+                    Phone: item.phone,
+                    Stack: item.stack,
+                    ClassMode: item.classmode,
+                  }))}
                   columns={columns}
                   initialState={{
                     pagination: {
@@ -298,6 +347,9 @@ export default function Leads() {
                   }}
                   pageSizeOptions={[5, 10]}
                   checkboxSelection
+                  onRowSelectionModelChange={(newSelection) => {
+                    handleRowSelection(newSelection);
+                  }}
                 />
               </div>
             ) : (
