@@ -11,7 +11,7 @@ import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-import TableData from './../../components/input'
+import BasicTextFields from './../../components/input'
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useState, useEffect } from 'react';
@@ -65,7 +65,6 @@ const columns = [
   {
     field: 'Stack', headerName: 'Stack', width: 240,
     renderCell: (params) => {
-      console.log("Stack value:", params.value); 
       return (
         <Button
           variant="contained"
@@ -130,25 +129,26 @@ export default function Leads() {
   const [selectedRowId, setSelectedRowId] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = localStorage.getItem('jwtToken');
-        if (!token) {
-          throw new Error('No token found');
-        }
-
-        const response = await axios.get('http://localhost:8080/leads/getAllLeads', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setData(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchData();
+    fetchData()
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const token = localStorage.getItem('jwtToken');
+      if (!token) {
+        throw new Error('No token found');
+      }
+
+      const response = await axios.get('http://localhost:8080/leads/getAllLeads', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setData(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   const handleRowSelection = (selection) => {
     if (selection.length > 0) {
@@ -182,13 +182,11 @@ export default function Leads() {
       const updatedData = data.filter((row, index) => index !== selectedRowId);
       setData(updatedData);
       setSelectedRowId(null);
-      window.location.reload();
-
     } catch (error) {
       console.error('Error deleting data:', error);
     }
   };
-  console.log(data);
+  // console.log(data);
   const [viewMode, setViewMode] = useState('table');
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -299,7 +297,7 @@ export default function Leads() {
                         </div>
                       </div>
                       <div className='border-t-2 '>
-                        <TableData />
+                      <BasicTextFields  onCancel={handleClose} />
                       </div>
                     </Box>
                   </Fade>

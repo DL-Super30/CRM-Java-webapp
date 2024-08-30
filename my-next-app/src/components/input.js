@@ -223,8 +223,8 @@ function getStyles(name, courses, theme) {
         : theme.typography.fontWeightMedium,
   };
 }
-export default function BasicTextFields() {
-
+export default function BasicTextFields({onCancel }) {
+  const [formDataSubmitted, setFormDataSubmitted] = React.useState(false);
   const [name, setName] = React.useState("");
   const [leadStatus, setLeadStatus] = React.useState("Select Lead Status");
   const [cc, setCc] = React.useState(91);
@@ -255,14 +255,14 @@ export default function BasicTextFields() {
       classmode,
     };
   
-    console.log(JSON.stringify(formData, null, 2));
+    // console.log(JSON.stringify(formData, null, 2));
 
     try {
       const token = localStorage.getItem('jwtToken');
       if (!token) {  
         throw new Error('No token found');
       }
-      console.log(token);
+      // console.log(token);
       // Send a POST request to the API with the formData
       const response = await axios.post('http://localhost:8080/leads/createLead', formData,{  
         headers: {
@@ -279,6 +279,30 @@ export default function BasicTextFields() {
     }
   };
   
+  React.useEffect(() => {
+    if (formDataSubmitted) {
+      // Reset the form fields or refetch data, depending on your requirements
+      // For example, if you want to reset the form fields:
+      setName("");
+      setLeadStatus("Select Lead Status");
+      setCc(91);
+      setLeadSource("Select Lead Source");
+      setPhone("");
+      setStack("Select Stack");
+      setEmail("");
+      setFeeQuoted("");
+      setclassmode("Select Class Mode");
+      setBatchTiming("");
+      setNextFollowUp(null);
+      setDescription("");
+      setcourses([]);
+  
+      // Optionally, refetch data if needed, e.g., call your data fetching function here
+  
+      // Reset the form submission state
+      setFormDataSubmitted(false);
+    }
+  }, [formDataSubmitted]);
 
 
   const theme = useTheme();
@@ -588,10 +612,10 @@ export default function BasicTextFields() {
 
 
       <Stack className="flex justify-center  border-b-2 " direction="row" spacing={2} style={{ width: "64rem" }}>
-        <Button variant="outlined" size="large" sx={{ textTransform: 'none' }}>
+        <Button  onClick={onCancel}  variant="outlined" size="large" sx={{ textTransform: 'none' }}>
           Cancel
         </Button>
-        <Button variant="contained" size="large" sx={{ textTransform: 'none' }} onClick={handleCreate}>
+        <Button variant="contained" size="large"sx={{ textTransform: 'none' }}onClick={() => {handleCreate();onCancel();}}>
           Create
         </Button>
       </Stack>
