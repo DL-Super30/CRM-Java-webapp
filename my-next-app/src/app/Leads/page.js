@@ -125,8 +125,13 @@ const style = {
 
 
 export default function Leads() {
+  const [searchTerm, setSearchTerm] = useState('');
   const [data, setData] = useState([]);
   const [selectedRowId, setSelectedRowId] = useState(null);
+  const filteredData = data.filter((item) => 
+    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  
 
   useEffect(() => {
     fetchData()
@@ -315,6 +320,8 @@ export default function Leads() {
                 <StyledInputBase
                   placeholder="Search…"
                   inputProps={{ 'aria-label': 'search' }}
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </Search>
             </div>
@@ -328,7 +335,7 @@ export default function Leads() {
             {viewMode === 'table' ? (
               <div className='w-full' style={{ height: '65vh' }}>
                 <DataGrid
-                  rows={data.map((item, index) => ({
+                  rows={filteredData.map((item, index) => ({
                     id: index,
                     Createdon: item.nextFollowUp,
                     LeadStatus: item.leadStatus,
