@@ -98,7 +98,7 @@ const columns = [
           borderRadius: '20px',
           paddingRight: '30px',
           paddingLeft: '30px',
-          color:'black',
+          color: 'black',
           backgroundColor: params.value === 'HYDClassRoom' ? '#818bf8' : params.value === 'BLRClassRoom' ? '#C6C6F7' : params.value === 'InternationalOnline' ? 'rgb(243,92,244)' : '#D3D3D3',
         }}
       >
@@ -177,7 +177,7 @@ export default function Leads() {
           Authorization: `Bearer ${token}`,
         },
       });
-      
+
       // After successful deletion from the backend, update the UI
       const updatedData = data.filter((row, index) => index !== selectedRowId);
       setData(updatedData);
@@ -297,7 +297,7 @@ export default function Leads() {
                         </div>
                       </div>
                       <div className='border-t-2 '>
-                      <BasicTextFields  onCancel={handleClose} />
+                        <BasicTextFields onCancel={handleClose} />
                       </div>
                     </Box>
                   </Fade>
@@ -371,19 +371,61 @@ export default function Leads() {
                   </div>
                 </div>
                 <div className='grid grid-cols-1 mt-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-                  <div className='bg-[#E5E7EB] h-[60vh] p-4 md:p-2 px-0.5 max-w-96 flex items-center justify-center rounded'>
-                    <span className="text-sm font-medium">No data found.</span>
+                  <div className='bg-[#E5E7EB] h-[60vh] p-4 md:p-2 px-0.5 max-w-96 flex flex-col rounded'>
+                    <div className="overflow-y-auto h-full">
+                      {data.filter(item => item.leadStatus === "NotContacted").map((item, index) => (
+                        <div key={index} className='bg-white mb-2 p-2 rounded'>
+                          <p className="font-bold">{item.name}</p>
+                          <p>{item.nextFollowUp}</p>
+                          <p>{item.phone}</p>
+                          <p>{item.description}</p>
+                          <p>Nisha: she is from investment banking</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <div className='bg-[#E5E7EB] h-[60vh] p-4 md:p-2 px-0.5 max-w-96 flex items-center justify-center rounded'>
-                    <span className="text-sm font-medium">No data found.</span>
+                  <div className='bg-[#E5E7EB] h-[60vh] p-4 md:p-2 px-0.5 max-w-96 flex flex-col rounded'>
+                    <div className="overflow-y-auto h-full">
+                      {data.filter(item => item.leadStatus === "Attempted").map((item, index) => (
+                        <div key={index} className='bg-white mb-2 p-2 rounded'>
+                          <p className="font-bold">{item.name}</p>
+                          <p>{item.nextFollowUp}</p>
+                          <p>{item.phone}</p>
+                          <p>{item.description}</p>
+                          <p>Nisha: she is from investment banking</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <div className='bg-[#E5E7EB] h-[60vh] p-4 md:p-2 px-0.5 max-w-96 flex items-center justify-center rounded'>
-                    <span class="text-sm font-medium">No data found.</span>
+                  <div className='bg-[#E5E7EB] h-[60vh] p-4 md:p-2 px-0.5 max-w-96 flex flex-col rounded'>
+                    <div className="overflow-y-auto h-full">
+                      {data.filter(item => item.leadStatus === "WarmLead").map((item, index) => (
+                        <div key={index} className='bg-white mb-2 p-2 rounded'>
+                          <p className="font-bold">{item.name}</p>
+                          <p>{item.nextFollowUp}</p>
+                          <p>{item.phone}</p>
+                          <p>{item.description}</p>
+                          <p>Nisha: she is from investment banking</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <div className='bg-[#E5E7EB] h-[60vh] p-4 md:p-2 px-0.5 max-w-96 flex items-center justify-center rounded'>
-                    <span class="text-sm font-medium">No data found.</span>
+                  <div className='bg-[#E5E7EB] h-[60vh] p-4 md:p-2 px-0.5 max-w-96 flex flex-col rounded'>
+                    <div className="overflow-y-auto h-full">
+                      {data.filter(item => item.leadStatus === "ColdLead").map((item, index) => (
+                        <div key={index} className='bg-white mb-2 p-2 rounded'>
+                          <p className="font-bold">{item.name}</p>
+                          <p>{item.nextFollowUp}</p>
+                          <p>{item.phone}</p>
+                          <p>{item.description}</p>
+                          <p>Nisha: she is from investment banking</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
+
+
 
               </div>
 
