@@ -24,7 +24,7 @@ export default function editPage() {
                Covert
             </Button>
          </div>
-         <div className="flex justify-between mx-3 p-2 shadow-lg ">
+         <div className="flex justify-between px-10 p-2 shadow-lg ">
             <div>
                <p className="font-medium text-sm">Email</p>
                <p className="font-medium text-sm">lakshmi@gmail.com</p>
@@ -46,6 +46,7 @@ export default function editPage() {
             </div>
          </div>
 
+         <div className="shadow-lg mx-3 p-2">
          <div className="flex justify-start mx-3 mt-4 pt-3 ">
             <button className="mx-4 border-b-2 border-transparent  hover:border-blue-500">Details</button>
             <button className="mx-2 border-b-2 border-transparent hover:border-blue-500">Activity</button>
@@ -55,77 +56,247 @@ export default function editPage() {
          <div className="border border-transparent border-t-slate-300  mx-5  flex justify-between">
             <div className="mt-4">
                <p className="text-sm">Name</p>
-               <input type="text"className=" border border-transparent border-b-slate-300 focus:outline-none w-[45rem] "/>
+               <div className="relative w-[45rem]">
+                  <input
+                     type="text"
+                     className="border border-transparent border-b-slate-300 focus:outline-none w-full pr-10"
+                  />
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
+                     <Image
+                        src="/pencil.svg"
+                        alt="icon"
+                        width={20}
+                        height={20}
+                     />
+                  </div>
+               </div>
             </div>
             <div className="mt-4">
                <p className="text-sm">Lead Status</p>
-               <input type="text"className=" border border-transparent border-b-slate-300 focus:outline-none w-[45rem] "/>
+               <div className="relative w-[45rem]">
+                  <input
+                     type="text"
+                     className="border border-transparent border-b-slate-300 focus:outline-none w-full pr-10"
+                  />
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
+                     <Image
+                        src="/pencil.svg" 
+                        alt="icon"
+                        width={20} 
+                        height={20} 
+                     />
+                  </div>
+               </div>
             </div>
          </div>
          <div className=" mx-5  flex justify-between">
             <div className="mt-2">
                <p className="text-sm">CC</p>
-               <input type="text"className=" border border-transparent border-b-slate-300 focus:outline-none w-[45rem] "/>
+              <div className="relative w-[45rem]">
+                  <input
+                     type="text"
+                     className="border border-transparent border-b-slate-300 focus:outline-none w-full pr-10"
+                  />
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
+                     <Image
+                        src="/pencil.svg" 
+                        alt="icon"
+                        width={20} 
+                        height={20} 
+                     />
+                  </div>
+               </div>
             </div>
             <div className="mt-2">
                <p className="text-sm">Lead Source</p>
-               <input type="text"className=" border border-transparent border-b-slate-300 focus:outline-none w-[45rem] "/>
+              <div className="relative w-[45rem]">
+                  <input
+                     type="text"
+                     className="border border-transparent border-b-slate-300 focus:outline-none w-full pr-10"
+                  />
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
+                     <Image
+                        src="/pencil.svg" 
+                        alt="icon"
+                        width={20} 
+                        height={20} 
+                     />
+                  </div>
+               </div>
             </div>
          </div>
          <div className=" mx-5  flex justify-between">
             <div className="mt-2">
                <p className="text-sm">Phone</p>
-               <input type="text"className=" border border-transparent border-b-slate-300 focus:outline-none w-[45rem] "/>
+              <div className="relative w-[45rem]">
+                  <input
+                     type="text"
+                     className="border border-transparent border-b-slate-300 focus:outline-none w-full pr-10"
+                  />
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
+                     <Image
+                        src="/pencil.svg" 
+                        alt="icon"
+                        width={20} 
+                        height={20} 
+                     />
+                  </div>
+               </div>
             </div>
             <div className="mt-2">
                <p className="text-sm">Stack</p>
-               <input type="text"className=" border border-transparent border-b-slate-300 focus:outline-none w-[45rem] "/>
+              <div className="relative w-[45rem]">
+                  <input
+                     type="text"
+                     className="border border-transparent border-b-slate-300 focus:outline-none w-full pr-10"
+                  />
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
+                     <Image
+                        src="/pencil.svg" 
+                        alt="icon"
+                        width={20} 
+                        height={20} 
+                     />
+                  </div>
+               </div>
             </div>
          </div>
          <div className=" mx-5  flex justify-between">
             <div className="mt-2">
                <p className="text-sm">Email</p>
-               <input type="text"className=" border border-transparent border-b-slate-300 focus:outline-none w-[45rem] "/>
+              <div className="relative w-[45rem]">
+                  <input
+                     type="text"
+                     className="border border-transparent border-b-slate-300 focus:outline-none w-full pr-10"
+                  />
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
+                     <Image
+                        src="/pencil.svg" 
+                        alt="icon"
+                        width={20} 
+                        height={20} 
+                     />
+                  </div>
+               </div>
             </div>
             <div className="mt-2">
                <p className="text-sm">Course</p>
-               <input type="text"className=" border border-transparent border-b-slate-300 focus:outline-none w-[45rem] "/>
+              <div className="relative w-[45rem]">
+                  <input
+                     type="text"
+                     className="border border-transparent border-b-slate-300 focus:outline-none w-full pr-10"
+                  />
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
+                     <Image
+                        src="/pencil.svg" 
+                        alt="icon"
+                        width={20} 
+                        height={20} 
+                     />
+                  </div>
+               </div>
             </div>
          </div>
          <div className=" mx-5  flex justify-between">
             <div className="mt-4">
                <p className="text-sm">Fee Quoted</p>
-               <input type="text"className=" border border-transparent border-b-slate-300 focus:outline-none w-[45rem] "/>
+              <div className="relative w-[45rem]">
+                  <input
+                     type="text"
+                     className="border border-transparent border-b-slate-300 focus:outline-none w-full pr-10"
+                  />
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
+                     <Image
+                        src="/pencil.svg" 
+                        alt="icon"
+                        width={20} 
+                        height={20} 
+                     />
+                  </div>
+               </div>
             </div>
             <div className="mt-4">
                <p className="text-sm">Class Mode</p>
-               <input type="text"className=" border border-transparent border-b-slate-300 focus:outline-none w-[45rem] "/>
+              <div className="relative w-[45rem]">
+                  <input
+                     type="text"
+                     className="border border-transparent border-b-slate-300 focus:outline-none w-full pr-10"
+                  />
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
+                     <Image
+                        src="/pencil.svg" 
+                        alt="icon"
+                        width={20} 
+                        height={20} 
+                     />
+                  </div>
+               </div>
             </div>
          </div>
          <div className=" mx-5  flex justify-between">
             <div className="mt-4">
                <p className="text-sm">CC</p>
-               <input type="text"className=" border border-transparent border-b-slate-300 focus:outline-none w-[45rem] "/>
+              <div className="relative w-[45rem]">
+                  <input
+                     type="text"
+                     className="border border-transparent border-b-slate-300 focus:outline-none w-full pr-10"
+                  />
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
+                     <Image
+                        src="/pencil.svg" 
+                        alt="icon"
+                        width={20} 
+                        height={20} 
+                     />
+                  </div>
+               </div>
             </div>
             <div className="mt-4">
                <p className="text-sm">Lead Source</p>
-               <input type="text"className=" border border-transparent border-b-slate-300 focus:outline-none w-[45rem] "/>
+              <div className="relative w-[45rem]">
+                  <input
+                     type="text"
+                     className="border border-transparent border-b-slate-300 focus:outline-none w-full pr-10"
+                  />
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
+                     <Image
+                        src="/pencil.svg" 
+                        alt="icon"
+                        width={20} 
+                        height={20} 
+                     />
+                  </div>
+               </div>
             </div>
          </div>
          <div className=" mx-5  flex justify-between">
             <div className="mt-4">
                <p className="text-sm">Description</p>
-               <input type="text"className=" border border-transparent border-b-slate-300 focus:outline-none w-[94rem] "/>
+               <div className="relative w-[91rem]">
+                  <input
+                     type="text"
+                     className="border border-transparent border-b-slate-300 focus:outline-none w-full pr-10"
+                  />
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
+                     <Image
+                        src="/pencil.svg" 
+                        alt="icon"
+                        width={20} 
+                        height={20} 
+                     />
+                  </div>
+               </div>
             </div>
          </div>
-        <div className="flex justify-center mt-2 ">
-        <Button className="me-1 px-14" variant="outlined" size="large" sx={{ textTransform: 'none' }}>
-          Cancel
-        </Button>
-        <Button className="px-14" variant="contained" size="large"sx={{ textTransform: 'none' }}>
-          Save
-        </Button>
-      </div>
+         <div className="flex justify-center mt-2 ">
+            <Button className="me-1 px-14" variant="outlined" size="large" sx={{ textTransform: 'none' }}>
+               Cancel
+            </Button>
+            <Button className="px-14" variant="contained" size="large" sx={{ textTransform: 'none' }}>
+               Save
+            </Button>
+         </div>
+         </div>
       </>
    );
 }
