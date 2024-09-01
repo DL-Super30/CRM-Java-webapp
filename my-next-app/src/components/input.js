@@ -281,8 +281,6 @@ export default function BasicTextFields({onCancel }) {
   
   React.useEffect(() => {
     if (formDataSubmitted) {
-      // Reset the form fields or refetch data, depending on your requirements
-      // For example, if you want to reset the form fields:
       setName("");
       setLeadStatus("Select Lead Status");
       setCc(91);
@@ -296,10 +294,6 @@ export default function BasicTextFields({onCancel }) {
       setNextFollowUp(null);
       setDescription("");
       setcourses([]);
-  
-      // Optionally, refetch data if needed, e.g., call your data fetching function here
-  
-      // Reset the form submission state
       setFormDataSubmitted(false);
     }
   }, [formDataSubmitted]);

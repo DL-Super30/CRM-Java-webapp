@@ -8,6 +8,7 @@ export default function editPage() {
          <Navbar />
          <div className="flex justify-between mx-3 border border-b-slate-500 p-2">
             <div className="flex flex-wrap">
+            <Image src="/arrow.svg" width={20} height={8} alt="phone" />
                <span className="me-1 mt-2">Back</span>
                <Image
                   src="/employee_contact.svg"
@@ -15,7 +16,7 @@ export default function editPage() {
                   height={20}
                   alt="employee_contact"
                />
-               <span className="ms-1 mt-2">Lakshmi</span>
+               <span className="ms-1 mt-2 font-bold">Lakshmi</span>
             </div>
             <Button
                className="text-white w-full sm:w-auto"
@@ -39,11 +40,17 @@ export default function editPage() {
             </div>
             <div>
                <p className="font-medium text-sm">Course</p>
+               <div className="flex">
+               <Image src="/schoolar.svg" width={20} height={8} alt="level" />
                <p className="font-medium text-sm">Soft Skills, Aptitude</p>
+               </div>
             </div>
             <div>
                <p className="font-medium text-sm">Lead Status</p>
-               <p className="font-medium text-green-500 text-sm">Warm Lead</p>
+               <div className="flex">
+               <Image src="/level.svg" width={20} height={8} alt="level" />
+               <p className="font-medium  text-green-500 text-sm">Warm Lead</p>
+               </div>
             </div>
          </div>
 
