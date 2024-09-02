@@ -19,6 +19,8 @@
     "@mui/x-data-grid": "^7.14.0",
     "@mui/x-date-pickers": "^7.14.0",
     "ag-charts-react": "^10.1.0",
+    "ag-grid-community": "^32.1.0",
+    "ag-grid-react": "^32.1.0",
     "axios": "^1.7.5",
     "date-fns": "^3.6.0",
     "dayjs": "^1.11.13",
