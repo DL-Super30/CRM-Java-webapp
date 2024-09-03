@@ -223,7 +223,7 @@ function getStyles(name, courses, theme) {
         : theme.typography.fontWeightMedium,
   };
 }
-export default function BasicTextFields({onCancel }) {
+export default function BasicTextFields({onCancel,fetchAllLeads }) {
   const [formDataSubmitted, setFormDataSubmitted] = React.useState(false);
   const [name, setName] = React.useState("");
   const [leadStatus, setLeadStatus] = React.useState("Select Lead Status");
@@ -270,7 +270,7 @@ export default function BasicTextFields({onCancel }) {
           'Content-Type': 'application/json',  
         },
       });
-
+      fetchAllLeads();
       // Handle successful response
       console.log('Data submitted successfully:', response.data);
     } catch (error) {

@@ -182,11 +182,8 @@ export default function Leads() {
           Authorization: `Bearer ${token}`,
         },
       });
-
+      fetchData();
       // After successful deletion from the backend, update the UI
-      const updatedData = data.filter((row, index) => index !== selectedRowId);
-      setData(updatedData);
-      setSelectedRowId(null);
     } catch (error) {
       console.error('Error deleting data:', error);
     }
@@ -302,7 +299,7 @@ export default function Leads() {
                         </div>
                       </div>
                       <div className='border-t-2 '>
-                        <BasicTextFields onCancel={handleClose} />
+                        <BasicTextFields onCancel={handleClose} fetchAllLeads={fetchData} />
                       </div>
                     </Box>
                   </Fade>
