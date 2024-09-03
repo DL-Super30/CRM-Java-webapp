@@ -441,7 +441,7 @@ const Leads = () => {
           <div className='first-row flex items-center justify-between'>
             <div className='flex items-center'>
               <div>
-                <img src='https://crm.skill-capital.com/_next/static/media/employee_contact.2d215fd6.svg'></img>
+              <Image className='inline-block align-middle' alt="down arrow" loading="lazy" width="40" height="35"  src="employee.svg"/>
               </div>
               <div>
                 <Menu as="div" className="relative inline-block text-left">
@@ -587,7 +587,11 @@ const Leads = () => {
           transition
           className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
         />
+        
 
+
+
+                   {/* Leads Modal */}
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
           <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <DialogPanel
@@ -597,8 +601,8 @@ const Leads = () => {
               <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                 <div className='first-row-h flex justify-between items-center pb-4'>
                   <div className='flex items-center gap-4 mb-2'>
-                    <img src='https://crm.skill-capital.com/_next/static/media/employee_contact.2d215fd6.svg' />
-                    <p>Create Leads</p>
+                  <Image className='inline-block align-middle' alt="down arrow" loading="lazy" width="30" height="30"  src="employee.svg"/>
+                    <p style={{ fontWeight: '600', fontSize: '23px' }} >Create Leads</p>
                   </div>
                   <div>
                     <i
@@ -630,14 +634,25 @@ const Leads = () => {
                           defaultValue='0'
                         />
                       </div>
-                      <input type='text' placeholder='Batch Timing' className='text-lg font-medium text-blue-gray-700 pb-1 pt-1 border-b border-[#0003] focus:border-b-black focus:outline-none w-full' />
-                      <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Stack</label>
-                      <select className='border-0 border-b focus:border-b-black focus:outline-none bg-white  text-lg font-medium text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full'>
-                        <option value="">Select Lead Status</option>
-                        <option value="status1">Not Contacted</option>
-                        <option value="status2">Attempted</option>
-                        <option value="status3">Warm Lead</option>
-                        <option value="status4">Cold Lead</option>
+                      <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Batch Timmings</label>
+                      {/* <input type='text' placeholder='Email' className='text-lg font-medium text-blue-gray-700 pb-1 pt-1 border-b border-[#0003] focus:border-b-black focus:outline-none w-full' /> */}
+                      <select placeholder='Batch Timmings' className='border-0 border-b focus:border-b-black focus:outline-none bg-white  text-lg font-medium text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full'>
+                      
+                        <option value="">Select Batch Timmings</option>
+                        <option value="SEVEN_AM_TO_EIGHT_AM">7AM-8AM</option>
+                        <option value="EIGHT_AM_TO_NINE_AM">8AM-9AM</option>
+                        <option value="NINE_AM_TO_TEN_AM">9AM-10AM</option>
+                        <option value="TEN_AM_TO_ELEVEN_AM">10AM-11AM</option>
+                        <option value="ELEVEN_AM_TO_TWELVE_PM">11AM-12PM</option>
+                        <option value="TWELVE_PM_TO_ONE_PM">12PM-1PM</option>
+                        <option value="ONE_PM_TO_TWO_PM">1PM-2PM</option>
+                        <option value="TWO_PM_TO_THREE_PM">2PM-3PM</option>
+                        <option value="THREE_PM_TO_FOUR_PM">3PM-4PM</option>
+                        <option value="FOUR_PM_TO_FIVE_PM">4PM-5PM</option>
+                        <option value="FIVE_PM_TO_SIX_PM">5PM-6PM</option>
+                        <option value="SIX_PM_TO_SEVEN_PM">6PM-7PM</option>
+                        <option value="SEVEN_PM_TO_EIGHT_PM">7PM-8PM</option>
+                        <option value="EIGHT_PM_TO_NINE_PM">8PM-9PM</option>
                       </select>
                       {/* <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Stack</label>
                                             <select className='border-0 border-b focus:border-b-black focus:outline-none bg-white  text-lg font-medium text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full'>
@@ -661,26 +676,34 @@ const Leads = () => {
                     <div className='w-1/2 pl-4'>
                       <label className='block font-medium text-base text-[#A8C6DF]'>Lead Status</label>
                       <select className='border-0 border-b focus:border-b-black focus:outline-none bg-white  text-lg font-medium text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full'>
-                        <option value="">Select Lead Status</option>
-                        <option value="status1">NotContacted</option>
-                        <option value="status2">Attempted</option>
-                        <option value="status3">WarmLead</option>
-                        <option value="status4">ColdLead</option>
+                        <option value="None">Select Lead Status</option>
+                        <option value="NotContacted">NotContacted</option>
+                        <option value="Attempted">Attempted</option>
+                        <option value="WarmLead">WarmLead</option>
+                        <option value="Opportunity">Opportunity</option>
+                        <option value="ColdLead">ColdLead</option>
+
                       </select>
                       <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Lead Source</label>
                       <select className='border-0 border-b focus:border-b-black focus:outline-none bg-white  text-lg font-medium text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full'>
-                        <option value="">Select Lead Source</option>
-                        <option value="source1">None</option>
-                        <option value="source2">WalkIn</option>
-                        <option value="status2">StudentReferal</option>
-                        <option value="status2">Demo</option>
-                        <option value="status2">Website</option>
-                        <option value="status2">WebsiteChat</option>
-                        <option value="status2">InboundCall</option>
-                        <option value="status2">GoogleAdworks</option>
-                        <option value="status2">FacebookAds</option>
-                        <option value="status2">GoogleMyBusiness</option>
-                        <option value="status2">WhatsAppSkillCapital</option>
+                        <option value="None">Select Lead Source</option>
+                        <option value="WalkIn">WalkIn</option>
+                        <option value="StudentReferral">StudentReferal</option>
+                        <option value="Demo">Demo</option>
+                        <option value="WebSite">Website</option>
+                        <option value="WebsiteChat">Website Chat</option>
+                        <option value="InboundCall">Inbound Call</option>
+                        <option value="GoogleAdWords">Google Adworks</option>
+                        <option value="FacebookAds">Facebook Ads</option>
+                        <option value="GoogleMyBusiness">Google My Business</option>
+                        <option value="WhatsApp">WhatsApp-SkillCapital</option>
+                      </select>
+                      <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Stack</label>
+                      <select className='border-0 border-b focus:border-b-black focus:outline-none bg-white  text-lg font-medium text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full'>
+                        <option value="None">Select Lead Status</option>
+                        <option value="LifeSkills">Life Skills</option>
+                        <option value="StudyAbroad">Study Abroad</option>
+                        <option value="HR">HR</option>
                       </select>
                       {/* <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Stack</label>
                                             <select className='border-0 border-b focus:border-b-black focus:outline-none bg-white  text-lg font-medium text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full'>
@@ -704,10 +727,11 @@ const Leads = () => {
                       <input type='text' placeholder='Course' className='border-0 border-b focus:border-b-black focus:outline-none bg-white hover:bg-blue-50 text-lg font-semibold text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full' />
                       <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Class Mode</label>
                       <select className='border-0 border-b focus:border-b-black focus:outline-none bg-white  text-lg font-medium text-blue-gray-700 pb-2 pt-1 border-[#0003] w-full'>
-                        <option value="">HYDClassRoom</option>
-                        <option value="mode1">BLRClassRoom</option>
-                        <option value="mode2">IndiaOnline</option>
-                        <option value="mode3">InternationalOnline</option>
+                      <option value="None">Select Class Mode</option>
+                        <option value="HYDClassRoom">HYD Class Room</option>
+                        <option value="BLRClassRoom">BLR Class Room</option>
+                        <option value="IndiaOnline">India Online</option>
+                        <option value="InternationalOnline">International Online</option>
                       </select>
                       <label className='block font-medium text-base text-[#A8C6DF] mt-5'>Next Followup</label>
                       <div className='relative'>

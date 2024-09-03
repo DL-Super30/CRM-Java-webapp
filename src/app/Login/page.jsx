@@ -170,11 +170,7 @@ export default function LoginPage() {
     <main>
       <div className="grid items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
         <div className="md:ms-28 ms-5">
-          <img
-            className="md:ms-20 ms-5 mb-10 w-3/4 md:w-auto"
-            src="https://crm.skill-capital.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fskillcapital.41121682.png&w=640&q=75"
-            alt="Logo"
-          ></img>
+        <Image className='mt-24 md:ms-20 ms-5 mb-10 w-3/4 md:w-auto' src="/skillcapital.png" width={350} height={300} alt="Logo"/>
           <div className="border-inherit border-2 rounded-md shadow-lg p-6 w-full md:w-3/4 mt-5 md:ms-10">
             <label className="font-normal text-sm">User Name</label>
             <TextField
@@ -233,11 +229,7 @@ export default function LoginPage() {
               sales, and support for seamless growth.
             </p>
           </div>
-          <img
-            className="mt-10"
-            src="https://crm.skill-capital.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fpinkcrm.d54abf0d.png&w=3840&q=75"
-            alt="CRM Illustration"
-          ></img>
+          <Image className='mt-10' src="/crm.png" width={1000} height={500} alt='CRM'/>
         </div>
       </div>
     </main>
