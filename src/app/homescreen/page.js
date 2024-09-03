@@ -1,12 +1,17 @@
 
 "use client"
 import React, { useState, useEffect } from 'react';
-import Navbar from '../components/page';
+// import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+// import Home from './pages/Home';
+import Leads from '../leads/page';
+// import Opportunities from './pages/Opportunities';
+import Navbar from '../Components/Navbar';
 import Chart from 'react-apexcharts';
 // import axios from 'axios'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Home = () => {
   const [notificationDialogOpen, setNotificationDialogOpen] = useState(false);
@@ -15,12 +20,26 @@ const Home = () => {
   const [chartSeries, setChartSeries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  
-
-     
   const closeNotificationDialog = () => setNotificationDialogOpen(false);
   const closeUserDialog = () => setUserDialogOpen(false);
+  
+  
+  const navigateToLeads = () => {
+      router.push('/leads');}
+
+
+  const handleLogin = async () => {
+  }
+  
+
+  const goToLeadsPage = () => {
+    router.push('/leads');
+  };
+  
+    
+    
+    
+       
 
   return (
     <main className="min-h-screen bg-gray-100">
@@ -28,6 +47,13 @@ const Home = () => {
         onNotificationClick={() => setNotificationDialogOpen(true)}
         onUserClick={() => setUserDialogOpen(true)}
       />
+      {/* <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/leads" element={<Leads />} />
+          <Route path="/opportunities" element={<Opportunities />} />
+          {/* Add more routes as needed *
+        </Routes> */}
+      
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 p-4 sm:p-8 font-bold text-base sm:text-lg">
         {[

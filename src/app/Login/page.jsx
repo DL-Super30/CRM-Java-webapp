@@ -1,57 +1,245 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Checkbox from '@mui/material/Checkbox';
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+// import * as React from 'react';
+// import Box from '@mui/material/Box';
+// import TextField from '@mui/material/TextField';
+// import Checkbox from '@mui/material/Checkbox';
+// const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+// import axios from 'axios';
+
+
+
+// const handleLogin = async () => {
+
+//     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+//     let hasError = false;
+//     if (username === "") {
+//       setUsernameError("Please enter username");
+//       hasError = true;
+//     } else {
+//       setUsernameError("");
+//     }
+//     if (password === "") {
+//       setPasswordError("Please enter password");
+//       hasError = true;
+//     } else {
+//       setPasswordError("");
+//     }
+//     if (!hasError) {
+//       try {
+//         const response = await axios.post(`${apiUrl}/api/v1/auth/login`, {
+//           email: username,
+//           password: password,
+//         });
+
+//         if (response.status === 200) {
+//           router.push("/homescreen");
+//           console.log(response.data);
+//         }
+//       } catch (error) {
+//         if (error.response && error.response.status === 401) {
+//           console.error("Error response:", error.response);
+//           setLoginError("Invalid username or password");
+//         } else {
+//           setLoginError("An error occurred. Please try again.");
+//         }
+//       }
+//     }
+//   };
 
 
 
 
 
+// export default function Home() {
+//     return (
 
-
-
-export default function Home() {
-    return (
-
-        <main className='flex h-screen'>
-            <div >
-                <div className='pt-24 pl-24 items-center'>
-                    <div className=''>
-                        <img className='pb-10'src="https://crm.skill-capital.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fskillcapital.41121682.png&w=640&q=75"></img>
-                    </div>
-                    <div class="border boder-gray-1000  shadow-lg p-7 w-3/4">
-                        <label>User Name</label>
-                        <TextField type='text' fullWidth id="fullWidth" />
-                        <label>Password</label>
-                        <TextField type='password' fullWidth id="fullWidth" />
-                        <button type="button" class=" mt-9 w-full text-white bg-gradient-to-r from-orange-300 to-pink-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Login</button>
-                        <div className='flex '>
-                        <Checkbox {...label} />
-                        <span className="font-normal text-sm text-gray-600 mt-2.5">Remember Me</span>
-                        </div>
-                        <span class="text-gray-500 text-sm font-medium mt-24 text-center block">©2024, All rights reserved</span>
+//         <main className='flex h-screen'>
+//             <div >
+//                 <div className='pt-24 pl-24 items-center'>
+//                     {console.log(api)}
+//                     <div className=''>
+//                         <img className='pb-10'src="https://crm.skill-capital.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fskillcapital.41121682.png&w=640&q=75"></img>
+//                     </div>
+//                     <div class="border boder-gray-1000  shadow-lg p-7 w-3/4">
+//                         <label>User Name</label>
+//                         <TextField type='text' fullWidth id="fullWidth" />
+//                         <label>Password</label>
+//                         <TextField type='password' fullWidth id="fullWidth" />
+//                         <button type="button" class=" mt-9 w-full text-white bg-gradient-to-r from-orange-300 to-pink-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Login</button>
+//                         <div className='flex '>
+//                         <Checkbox {...label} />
+//                         <span className="font-normal text-sm text-gray-600 mt-2.5">Remember Me</span>
+//                         </div>
+//                         <span class="text-gray-500 text-sm font-medium mt-24 text-center block">©2024, All rights reserved</span>
                         
             
 
-                    </div>
-                </div>
+//                     </div>
+//                 </div>
 
+//             </div>
+
+//             <div className='pt-10'>
+//                 <div>
+//                 <h1 className=" font-bold text-[1.8rem] text-center leading-[normal]">Seamlessly manage all learner data in a unified platform.</h1>
+//                 <p class=" font-normal text-center ">Centralize customer data effortlessly. Streamline communication, sales, and support for seamless growth.</p>
+//                 </div>
+
+//                 <img className='relative h-[35rem]'src='https://crm.skill-capital.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fpinkcrm.d54abf0d.png&w=1920&q=75'></img>
+
+
+//             </div>
+
+
+//         </main>
+
+//     )
+// }
+
+
+
+
+
+
+
+
+
+
+
+"use client";
+
+import * as React from "react";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Checkbox from "@mui/material/Checkbox";
+import { useState } from "react";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
+export default function LoginPage() {
+  const router = useRouter();
+
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [loginError, setLoginError] = useState("");
+
+  const handleLogin = async () => {
+    let hasError = false;
+    if (username === "") {
+      setUsernameError("Please enter username");
+      hasError = true;
+    } else {
+      setUsernameError("");
+    }
+    if (password === "") {
+      setPasswordError("Please enter password");
+      hasError = true;
+    } else {
+      setPasswordError("");
+    }
+    if (!hasError) {
+      try {
+        const response = await axios.post(`${apiUrl}/api/v1/auth/login`, {
+          email: username,
+          password: password,
+        });
+
+        if (response.status === 200) {
+          router.push("/homescreen");
+          console.log(response.data);
+        }
+      } catch (error) {
+        if (error.response && error.response.status === 401) {
+          console.error("Error response:", error.response);
+          setLoginError("Invalid username or password");
+        } else {
+          setLoginError("An error occurred. Please try again.");
+        }
+      }
+    }
+  };
+
+  return (
+    <main>
+      <div className="grid items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+        <div className="md:ms-28 ms-5">
+          <img
+            className="md:ms-20 ms-5 mb-10 w-3/4 md:w-auto"
+            src="https://crm.skill-capital.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fskillcapital.41121682.png&w=640&q=75"
+            alt="Logo"
+          ></img>
+          <div className="border-inherit border-2 rounded-md shadow-lg p-6 w-full md:w-3/4 mt-5 md:ms-10">
+            <label className="font-normal text-sm">User Name</label>
+            <TextField
+              fullWidth
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            {usernameError && (
+              <div style={{ color: "#E22449", fontSize: "15px" }}>
+                {usernameError}
+              </div>
+            )}
+            <label className="font-normal text-sm">Password</label>
+            <TextField
+              type="password"
+              fullWidth
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {passwordError && (
+              <div style={{ color: "#E22449", fontSize: "15px" }}>
+                {passwordError}
+              </div>
+            )}
+            <Button
+              fullWidth
+              variant="contained"
+              className="mt-10 mb-5 bg-gradient-to-r from-orange-300 to-pink-500"
+              onClick={handleLogin}
+            >
+              Login
+            </Button>
+            {loginError && (
+              <div style={{ color: "#E22449", fontSize: "15px" }}>
+                {loginError}
+              </div>
+            )}
+            <div className="flex items-center">
+              <Checkbox {...label} />
+              <span className="text-slate-600">Remember Me</span>
             </div>
-
-            <div className='pt-10'>
-                <div>
-                <h1 className=" font-bold text-[1.8rem] text-center leading-[normal]">Seamlessly manage all learner data in a unified platform.</h1>
-                <p class=" font-normal text-center ">Centralize customer data effortlessly. Streamline communication, sales, and support for seamless growth.</p>
-                </div>
-
-                <img className='relative h-[35rem]'src='https://crm.skill-capital.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fpinkcrm.d54abf0d.png&w=1920&q=75'></img>
-
-
-            </div>
-
-
-        </main>
-
-    )
+            <p className="text-slate-600 text-center mt-20">
+              ©2024, All rights reserved
+            </p>
+          </div>
+        </div>
+        <div className="w-1.9/3 left-[50%] mt-10">
+          <div className="mt-12 ms-15">
+            <h1 className="text-3xl font-bold w-3/4 text-center text-customBlue ps-10 ms-4">
+              Seamlessly manage all learner data in a unified platform.
+            </h1>
+            <p className="text-lg w-3/4 text-center font-light text-customBlue ms-10 lg:ms-14">
+              Centralize customer data effortlessly. Streamline communication,
+              sales, and support for seamless growth.
+            </p>
+          </div>
+          <img
+            className="mt-10"
+            src="https://crm.skill-capital.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fpinkcrm.d54abf0d.png&w=3840&q=75"
+            alt="CRM Illustration"
+          ></img>
+        </div>
+      </div>
+    </main>
+  );
 }
