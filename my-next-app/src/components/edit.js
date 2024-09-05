@@ -5,9 +5,38 @@ import Image from "next/image";
 import Button from "@mui/material/Button";
 import InputField from "./inputField";
 import MyGrid from "./AGgrid";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from 'axios';
 
-export default function EditPage() {
+
+export default function EditPage({ id }) {
+
+  useEffect(() => {
+    getLeadbyId()
+  }, [id]);
+
+  const getLeadbyId = async () => {
+    try {
+      const token = localStorage.getItem('jwtToken');
+      if (!token) {
+        throw new Error('No token found');
+      }
+
+      console.log('Token:', `Bearer ${token}`);
+      console.log('Fetching data for ID:', typeof id);
+      const idInt = parseInt(id, 10);
+      console.log('Fetching data for ID:', typeof idInt);
+      const response = await axios.get(`http://localhost:8080/leads/getLeadById/${idInt}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setData(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  const [data, setData] = useState({});
   const [activeSection, setActiveSection] = useState("Details");
   const [platform, setPlatform] = useState("New Task");
 
@@ -170,7 +199,7 @@ export default function EditPage() {
           <Image src="/arrow.svg" width={20} height={8} alt="phone" />
           <span className="me-1 mt-2">Back</span>
           <Image src="/employee_contact.svg" width={45} height={20} alt="employee_contact" />
-          <span className="ms-1 mt-2 font-bold">Lakshmi</span>
+          <span className="ms-1 mt-2 font-bold">{data.name}</span>
         </div>
         <Button className="text-white w-full sm:w-auto" variant="contained" size="small">
           Convert
@@ -178,28 +207,37 @@ export default function EditPage() {
       </div>
       <div className="flex justify-between px-10 p-2 shadow-lg">
         <div>
-          <p className="font-medium text-sm">Email</p>
-          <p className="font-medium text-sm">lakshmi@gmail.com</p>
+          <p className="font-medium text-sm"> Email</p>
+          <p className="font-medium text-sm">{data.email}</p>
         </div>
         <div>
           <p className="font-medium text-sm">Phone</p>
           <div className="flex">
             <Image src="/phone.svg" width={15} height={5} alt="phone" />
-            <p className="font-medium text-[#1B96FF] text-sm">+91 8754216598</p>
+            <p className="font-medium text-[#1B96FF] text-sm">+91 {data.phone}</p>
           </div>
         </div>
         <div>
           <p className="font-medium text-sm">Course</p>
           <div className="flex">
             <Image src="/schoolar.svg" width={20} height={8} alt="level" />
-            <p className="font-medium text-sm">Soft Skills, Aptitude</p>
+            <p className="font-medium text-sm">
+              {Array.isArray(data.courses)
+                ? data.courses.length > 0
+                  ? data.courses.length === 1
+                    ? data.courses[0]
+                    : data.courses.join(', ')
+                  : 'No courses available'
+                : 'No courses available'}
+            </p>
+
           </div>
         </div>
         <div>
           <p className="font-medium text-sm">Lead Status</p>
           <div className="flex">
             <Image src="/level.svg" width={20} height={8} alt="level" />
-            <p className="font-medium text-green-500 text-sm">Warm Lead</p>
+            <p className="font-medium text-green-500 text-sm">{data.leadStatus}</p>
           </div>
         </div>
       </div>
@@ -235,27 +273,33 @@ export default function EditPage() {
           {activeSection === "Details" && (
             <>
               <div className="flex justify-between">
-                <InputField label="Name" value={5} />
-                <InputField label="Lead Status" value={5} />
+                <InputField label="Name" value={5} defaultValue={data.name} />
+                <InputField label="Lead Status" value={5} defaultValue={data.leadStatus} />
               </div>
               <div className="flex justify-between">
-                <InputField label="CC" />
-                <InputField label="Lead Source" />
+                <InputField label="CC" defaultValue={data.cc} />
+                <InputField label="Lead Source" defaultValue={data.leadSource} />
               </div>
               <div className="flex justify-between">
-                <InputField label="Phone" />
-                <InputField label="Stack" />
+                <InputField label="Phone" defaultValue={data.phone} />
+                <InputField label="Stack" defaultValue={data.stack} />
               </div>
               <div className="flex justify-between">
-                <InputField label="Email" />
-                <InputField label="Course" />
+                <InputField label="Email" defaultValue={data.email} />
+                <InputField label="Course" defaultValue={Array.isArray(data.courses)
+                  ? data.courses.length > 0
+                    ? data.courses.length === 1
+                      ? data.courses[0]
+                      : data.courses.join(', ')
+                    : 'No courses available'
+                  : 'No courses available'} />
               </div>
               <div className="flex justify-between">
-                <InputField label="Fee Quoted" />
-                <InputField label="Class Mode" />
+                <InputField label="Fee Quoted" defaultValue={data.feeQuoted} />
+                <InputField label="Class Mode" defaultValue={data.classmode} />
               </div>
               <div className="flex justify-between">
-                <InputField label="Description" width="91rem" />
+                <InputField label="Description" width="91rem" defaultValue={data.description} />
               </div>
             </>
           )}

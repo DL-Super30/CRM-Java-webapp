@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-function InputField({ label, value = 5, width = "44rem" }) {
+function InputField({ label, value = 5, width = "44rem",defaultValue=""}) {
   return (
     <div className={`mt-${value}`}>
       <p className="text text-[#A8C6DF]">{label}</p>
@@ -8,6 +8,7 @@ function InputField({ label, value = 5, width = "44rem" }) {
         <input
           type="text"
           className="border border-transparent border-b-slate-300  focus:outline-none w-full pr-10"
+          defaultValue={defaultValue}
         />
         <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
           <Image src="/pencil.svg" alt="icon" width={20} height={20} />

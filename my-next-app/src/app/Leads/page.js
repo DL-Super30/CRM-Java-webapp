@@ -16,6 +16,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -125,6 +126,7 @@ const style = {
 
 
 export default function Leads() {
+  const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const [data, setData] = useState([]);
   const [selectedRowId, setSelectedRowId] = useState(null);
@@ -157,7 +159,9 @@ export default function Leads() {
 
   const handleRowSelection = (selection) => {
     if (selection.length > 0) {
+      let id = selection[0];
       setSelectedRowId(selection[0]);
+      router.push(`/Test?id=${id+1}`)
     } else {
       setSelectedRowId(null);
     }
