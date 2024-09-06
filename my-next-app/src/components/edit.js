@@ -5,11 +5,24 @@ import Image from "next/image";
 import Button from "@mui/material/Button";
 import InputField from "./inputField";
 import MyGrid from "./AGgrid";
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import axios from 'axios';
 
 
 export default function EditPage({ id }) {
+  const platformOptions = {
+    "New Task": "new_task",
+    "Meeting": "new_meeting",
+    "Email": "email",
+    "call": "phone",
+    "whatsapp": "whatsapp",
+    "message": "message",
+    "slack": "slack"
+  };
+
+  const [data, setData] = useState({});
+  const [activeSection, setActiveSection] = useState("Details");
+  const [platform, setPlatform] = useState("New Task");
 
   useEffect(() => {
     getLeadbyId()
@@ -36,10 +49,7 @@ export default function EditPage({ id }) {
       console.error('Error fetching data:', error);
     }
   };
-  const [data, setData] = useState({});
-  const [activeSection, setActiveSection] = useState("Details");
-  const [platform, setPlatform] = useState("New Task");
-
+  
   const activityrowData = [
     { Subject: "Task 1", DueDate: "2024-09-01", Priority: "High", Owner: true },
     { Subject: "Meeting", DueDate: "2024-09-02", Priority: "Medium", Owner: false },
@@ -307,50 +317,22 @@ export default function EditPage({ id }) {
           {activeSection === "Activity" && (
             <>
               <div className="mt-5">
-                <Button className="p-0 me-4" onClick={() => setPlatform("New Task")}>
-                  <div className="border border-black p-2 rounded flex">
-                    <Image src="/new_task.svg" width={20} height={8} alt="new task" />
-                    <span className="ms-2">New Task</span>
-                  </div>
-                </Button>
-                <Button className="p-0 me-4" onClick={() => setPlatform("Meeting")}>
-                  <div className="border border-black p-2 rounded flex">
-                    <Image src="/new_meeting.svg" width={20} height={8} alt="meeting" />
-                    <span className="ms-2">Meeting</span>
-                  </div>
-                </Button>
-                <Button className="p-0 me-4 " onClick={() => setPlatform("Email")}>
-                  <div className="border border-black p-2 rounded flex">
-                    <Image src="/email.svg" width={20} height={8} alt="email" />
-                    <span className="ms-2">Email</span>
-                  </div>
-                </Button>
-                <Button className="p-0 me-4" onClick={() => setPlatform("call")}>
-                  <div className="border border-black p-2 rounded flex">
-                    <Image src="/log_call.svg" width={20} height={8} alt="log call" />
-                    <span className="ms-2">Log Call</span>
-                  </div>
-                </Button>
-                <Button className="p-0 me-4" onClick={() => setPlatform("whatsapp")}>
-                  <div className="border border-black p-2 rounded flex">
-                    <Image src="/whatsapp.svg" width={20} height={8} alt="whatsapp" />
-                    <span className="ms-2">WhatsApp</span>
-                  </div>
-                </Button>
-                <Button className="p-0 me-4">
-                  <div className="border border-black p-2 rounded flex">
-                    <Image src="/message.svg" width={20} height={8} alt="message" />
-                    <span className="ms-2">Message</span>
-                  </div>
-                </Button>
-                <Button className="p-0 me-4">
-                  <div className="border border-black p-2 rounded flex">
-                    <Image src="/slack (1).png" width={25} height={5} alt="slack" />
-                    <span className="ms-2">Slack</span>
-                  </div>
-                </Button>
+                {Object.entries(platformOptions).map(([displayText, imageName]) => (
+                  <Button key={displayText} className="p-0 me-4" onClick={() => setPlatform(displayText)}>
+                    <div className="border border-black p-2 rounded flex">
+                      <Image
+                        src={`/${imageName}${displayText === 'slack' ? '.png' : '.svg'}`}
+                        width={20}
+                        height={8}
+                        alt={displayText}
+                      />
+                      <span className="ms-2">{displayText}</span>
+                    </div>
+                  </Button>
+                  
+                ))}
               </div>
-
+              
               {platform === "New Task" && (
                 <>
                   <div className="container mx-auto mt-5 border-t border-slate">
