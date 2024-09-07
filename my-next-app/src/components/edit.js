@@ -5,11 +5,12 @@ import Image from "next/image";
 import Button from "@mui/material/Button";
 import InputField from "./inputField";
 import MyGrid from "./AGgrid";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import axios from 'axios';
-
+import { useRouter } from 'next/navigation';
 
 export default function EditPage({ id }) {
+  const router = useRouter();
   const platformOptions = {
     "New Task": "new_task",
     "Meeting": "new_meeting",
@@ -49,7 +50,7 @@ export default function EditPage({ id }) {
       console.error('Error fetching data:', error);
     }
   };
-  
+
   const activityrowData = [
     { Subject: "Task 1", DueDate: "2024-09-01", Priority: "High", Owner: true },
     { Subject: "Meeting", DueDate: "2024-09-02", Priority: "Medium", Owner: false },
@@ -201,12 +202,16 @@ export default function EditPage({ id }) {
     { field: "Message" },
   ];
 
+  const backfunc = () => {
+    router.push(`/Leads`);
+  };
+
   return (
     <>
       <Navbar />
       <div className="flex justify-between mx-3 border border-b-slate-500 p-2">
         <div className="flex flex-wrap">
-          <Image src="/arrow.svg" width={20} height={8} alt="phone" />
+          <Image src="/arrow.svg" width={20} height={8} alt="phone" onClick={backfunc} />
           <span className="me-1 mt-2">Back</span>
           <Image src="/employee_contact.svg" width={45} height={20} alt="employee_contact" />
           <span className="ms-1 mt-2 font-bold">{data.name}</span>
@@ -232,14 +237,13 @@ export default function EditPage({ id }) {
           <div className="flex">
             <Image src="/schoolar.svg" width={20} height={8} alt="level" />
             <p className="font-medium text-sm">
-              {Array.isArray(data.courses)
-                ? data.courses.length > 0
-                  ? data.courses.length === 1
-                    ? data.courses[0]
-                    : data.courses.join(', ')
-                  : 'No courses available'
-                : 'No courses available'}
+              {Array.isArray(data.courses) && data.courses.length > 0
+                ? data.courses.length === 1
+                  ? data.courses[0]
+                  : data.courses.join(', ')
+                : ''}
             </p>
+
 
           </div>
         </div>
@@ -297,19 +301,17 @@ export default function EditPage({ id }) {
               <div className="flex justify-between">
                 <InputField label="Email" defaultValue={data.email} />
                 <InputField label="Course" defaultValue={Array.isArray(data.courses)
-                  ? data.courses.length > 0
-                    ? data.courses.length === 1
-                      ? data.courses[0]
-                      : data.courses.join(', ')
-                    : 'No courses available'
-                  : 'No courses available'} />
+                 ? data.courses.length === 1
+                 ? data.courses[0]
+                 : data.courses.join(', ')
+               : ''} />
               </div>
               <div className="flex justify-between">
                 <InputField label="Fee Quoted" defaultValue={data.feeQuoted} />
                 <InputField label="Class Mode" defaultValue={data.classmode} />
               </div>
               <div className="flex justify-between">
-                <InputField label="Description" width="91rem" defaultValue={data.description} />
+                <InputField label="Description" width="90rem" defaultValue={data.description} />
               </div>
             </>
           )}
@@ -329,10 +331,10 @@ export default function EditPage({ id }) {
                       <span className="ms-2">{displayText}</span>
                     </div>
                   </Button>
-                  
+
                 ))}
               </div>
-              
+
               {platform === "New Task" && (
                 <>
                   <div className="container mx-auto mt-5 border-t border-slate">
@@ -476,9 +478,14 @@ export default function EditPage({ id }) {
           )}
 
           {activeSection === "Ask Ai" && (
-            <div>
-              <p>Ask Ai content will be displayed here.</p>
-            </div>
+            <>
+              <div>
+                <textarea placeholder=" Ask me anything" className="w-full border mt-5 h-40 rounded-lg border border-gray-300 focus:outline-none placeholder-shown:border-blue-gray-200 focus:border-gray-900 focus:outline-0 "></textarea>
+              </div>
+              <div className="bg-gray-200 rounded-md mt-4 py-8">
+                <p className="flex gap-5 bg-sky-200 p-4"><Image src="/bulb.svg" width={20} height={8} alt="bulb" />Power of AI at your fingertips. Ask me anything.</p>
+              </div>
+            </>
           )}
           {activeSection === "Details" && (
             <div className="flex justify-center mt-2">
