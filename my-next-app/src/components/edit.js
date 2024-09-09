@@ -311,6 +311,10 @@ export default function EditPage({ id }) {
                 <InputField label="Class Mode" defaultValue={data.classmode} />
               </div>
               <div className="flex justify-between">
+                <InputField label="Batch Timing" defaultValue={data.batchTiming} />
+                <InputField label="Next FollowUp" defaultValue={data.nextFollowUp} />
+              </div>
+              <div className="flex justify-between">
                 <InputField label="Description" width="90rem" defaultValue={data.description} />
               </div>
             </>
