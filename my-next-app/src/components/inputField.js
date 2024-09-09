@@ -1,12 +1,16 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import MultiselectComponent from './MultiselectComponent'; // Import the new component
+import MultiselectComponent from './MultiselectComponent'; 
+import SingleSelectDropdown from './SingleSelectComponent'; 
 
 function InputField({ label, value = 5, width = "44rem", defaultValue = "" }) {
   const [showPencil, setShowPencil] = useState(true);
   const [selectedValues, setSelectedValues] = useState([]);
+  const [leadStatus, setLeadStatus] = useState(defaultValue);
+  const [leadSource, setLeadSource] = useState(defaultValue);
+  const [stack, setStack] = useState(defaultValue);
+  const [classMode, SetClassMode] = useState(defaultValue);
 
-  // Options for the multiselect dropdown
   const options = [
     { name: "HRManager", id: 1 },
     { name: "HRBusinessPartner", id: 2 },
@@ -30,12 +34,46 @@ function InputField({ label, value = 5, width = "44rem", defaultValue = "" }) {
     { name: "Finance", id: 20 },
     { name: "CompetitiveExams", id: 21 }
   ];
-  // Handle pencil click to toggle input vs multiselect
+
+  const leadStatusOptions = ["Not Contacted", "Attempted", "Warm Lead", "Cold Lead"];
+  const leadSourceOptions = [
+    "Select Lead Source",
+    "None",
+    "WalkIn",
+    "StudentReferal",
+    "Demo",
+    "WebSite",
+    "WebsiteChat",
+    "InboundCall",
+    "GoogleAdWords",
+    "FacebookAds",
+    "WhatsAppDigitalLync",
+    "GoogleMyBusiness"
+  ];
+  const stackOptions = [
+    "Select Stack",
+    "LifeSkills",
+    "StudyAboard",
+    "HR"
+  ];
+  const ClassModeOptions = [ "Select Class Mode","InternationalOnline","IndiaOnline","BLRClassRoom","HYDClassRoom"];
+
+  // Sync default values with state whenever defaultValue changes
+  useEffect(() => {
+    setLeadStatus(defaultValue);
+    setLeadSource(defaultValue);
+    setStack(defaultValue);
+    SetClassMode(defaultValue);
+  }, [defaultValue]);
+
+  // Log default values when component renders or updates
+  useEffect(() => {
+  }, [leadStatus, leadSource, stack, classMode]);
+
   const handlePencilClick = () => {
     setShowPencil(false);
   };
 
-  // Set the default selected values in multiselect
   useEffect(() => {
     let defaultSelected;
     if (Array.isArray(defaultValue)) {
@@ -57,7 +95,6 @@ function InputField({ label, value = 5, width = "44rem", defaultValue = "" }) {
     <div className={`mt-${value}`}>
       <p className="text text-[#A8C6DF]">{label}</p>
       <div className="relative" style={{ width }}>
-        {/* Conditionally render input or Multiselect depending on label and pencil click */}
         {label === 'Course' && !showPencil ? (
           <MultiselectComponent
             options={options}
@@ -65,19 +102,41 @@ function InputField({ label, value = 5, width = "44rem", defaultValue = "" }) {
             onSelect={(selectedList) => setSelectedValues(selectedList)}
             onRemove={(selectedList) => setSelectedValues(selectedList)}
           />
+        ) : label === 'Lead Status' && !showPencil ? (
+          <SingleSelectDropdown
+            options={leadStatusOptions}
+            defaultValue={leadStatus}
+            onChange={setLeadStatus}
+          />
+        ) :label === 'Lead Source' && !showPencil ? (
+          <SingleSelectDropdown
+            options={leadSourceOptions}
+            defaultValue={leadSource}
+            onChange={setLeadSource}
+          />
+        ) :label === 'Stack' && !showPencil ? (
+          <SingleSelectDropdown
+            options={stackOptions}
+            defaultValue={stack}
+            onChange={setStack}
+          />
+        ) :label === 'Class Mode' && !showPencil ? (
+          <SingleSelectDropdown
+            options={ClassModeOptions}
+            defaultValue={classMode}
+            onChange={SetClassMode}
+          />
         ) : (
-          // Regular input field when not 'courses' or pencil not clicked
           <input
             type="text"
             className="border border-transparent border-b-slate-300 focus:outline-none w-full pr-10"
             defaultValue={defaultValue}
             style={{
-              padding: "8px 10px", // Adjust padding to make it match Multiselect
+              padding: "8px 10px",
             }}
           />
         )}
 
-        {/* Show pencil icon only if not clicked */}
         {showPencil && (
           <div
             className="absolute right-0 top-1/2 transform -translate-y-1/2 cursor-pointer"
