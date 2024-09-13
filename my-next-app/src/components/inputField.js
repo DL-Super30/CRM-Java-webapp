@@ -5,7 +5,7 @@ import SingleSelectDropdown from './SingleSelectComponent';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"; // Import DatePicker CSS
 
-function InputField({ label, value = 5, width = "44rem", defaultValue = "" }) {
+function InputField({ label, value = 5, width = "44rem", defaultValue = "",onChange }) {
   const [showPencil, setShowPencil] = useState(true);
   const [selectedValues, setSelectedValues] = useState([]);
   const [leadStatus, setLeadStatus] = useState(defaultValue);
@@ -87,6 +87,21 @@ function InputField({ label, value = 5, width = "44rem", defaultValue = "" }) {
     setClassMode(defaultValue);
     setBatchTimings(defaultValue);
   }, [defaultValue]);
+
+  useEffect(() => {
+    if (onChange) {
+      onChange({
+        label,
+        leadStatus,
+        leadSource,
+        stack,
+        classMode,
+        batchTimings,
+        selectedDate,
+        selectedValues,
+      });
+    }
+  }, [leadStatus, leadSource, stack, classMode, batchTimings, selectedDate, selectedValues]);
 
   // Handle pencil icon click
   const handlePencilClick = () => {
@@ -181,7 +196,7 @@ function InputField({ label, value = 5, width = "44rem", defaultValue = "" }) {
           <input
             type="text"
             className="border border-transparent border-b-slate-300 focus:outline-none w-full h-[38px] pr-10" // Match height to DatePicker
-            defaultValue={defaultValue}
+            defaultValue={BatchTimingsOptions.find(option => option.value === batchTimings)?.label || batchTimings} 
             style={{ padding: "8px 10px" }}
             readOnly={label === 'Next FollowUp'}
           />

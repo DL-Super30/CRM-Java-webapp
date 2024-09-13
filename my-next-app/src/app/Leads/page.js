@@ -130,9 +130,12 @@ export default function Leads() {
   const [searchTerm, setSearchTerm] = useState('');
   const [data, setData] = useState([]);
   const [selectedRowId, setSelectedRowId] = useState(null);
+  const [isCheckboxSelected, setIsCheckboxSelected] = useState(false);
   const filteredData = data.filter((item) => 
-    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    (item.name && typeof item.name === 'string' ? item.name.toLowerCase() : '')
+      .includes(searchTerm.toLowerCase())
   );
+  
   
 
   useEffect(() => {
@@ -159,11 +162,17 @@ export default function Leads() {
 
   const handleRowSelection = (selection) => {
     if (selection.length > 0) {
-      let id = selection[0];
-      setSelectedRowId(selection[0]);
-      router.push(`/Test?id=${id+1}`)
+      setSelectedRowId(selection[0]);  // Store the ID of the selected row
+      setIsCheckboxSelected(true);     // Mark the checkbox as selected
     } else {
-      setSelectedRowId(null);
+      setIsCheckboxSelected(false);    // If no checkbox is selected, update the state
+    }
+  };
+
+  const handleRowClick = (params) => {
+    if (isCheckboxSelected && params.id === selectedRowId) {
+      // Navigate to a new page with the selected row's ID
+      router.push(`/Test?id=${params.id}`);
     }
   };
 
@@ -336,8 +345,8 @@ export default function Leads() {
             {viewMode === 'table' ? (
               <div className='w-full' style={{ height: '65vh' }}>
                 <DataGrid
-                  rows={filteredData.map((item, index) => ({
-                    id: index,
+                  rows={filteredData.map((item) => ({
+                    id: item.id,
                     Createdon: item.nextFollowUp,
                     LeadStatus: item.leadStatus,
                     Name: item.name,
@@ -353,6 +362,7 @@ export default function Leads() {
                   }}
                   pageSizeOptions={[5, 10]}
                   checkboxSelection
+                  onRowClick={handleRowClick}
                   onRowSelectionModelChange={(newSelection) => {
                     handleRowSelection(newSelection);
                   }}

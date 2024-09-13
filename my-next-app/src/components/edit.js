@@ -10,6 +10,33 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
 export default function EditPage({ id }) {
+  const idInt = parseInt(id, 10);
+  const [formData, setFormData] = useState({});
+  const handleSave = async (id) => {
+    try {
+      const token = localStorage.getItem('jwtToken');
+      if (!token) {
+        throw new Error('No token found');
+      }
+  
+      const response = await fetch(`http://localhost:8080/leads/updateLeadById/${idInt}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (response.ok) {
+        console.log("Data updated successfully");
+      } else {
+        console.error("Failed to update data");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };  
   const router = useRouter();
   const platformOptions = {
     "New Task": "new_task",
@@ -38,7 +65,6 @@ export default function EditPage({ id }) {
 
       console.log('Token:', `Bearer ${token}`);
       console.log('Fetching data for ID:', typeof id);
-      const idInt = parseInt(id, 10);
       console.log('Fetching data for ID:', typeof idInt);
       const response = await axios.get(`http://localhost:8080/leads/getLeadById/${idInt}`, {
         headers: {
@@ -301,10 +327,10 @@ export default function EditPage({ id }) {
               <div className="flex justify-between">
                 <InputField label="Email" defaultValue={data.email} />
                 <InputField label="Course" defaultValue={Array.isArray(data.courses)
-                 ? data.courses.length === 1
-                 ? data.courses[0]
-                 : data.courses.join(', ')
-               : ''} />
+                  ? data.courses.length === 1
+                    ? data.courses[0]
+                    : data.courses.join(', ')
+                  : ''} />
               </div>
               <div className="flex justify-between">
                 <InputField label="Fee Quoted" defaultValue={data.feeQuoted} />
@@ -496,7 +522,7 @@ export default function EditPage({ id }) {
               <Button className="me-1 px-14" variant="outlined" size="large" sx={{ textTransform: "none" }}>
                 Cancel
               </Button>
-              <Button className="px-14" variant="contained" size="large" sx={{ textTransform: "none" }}>
+              <Button onClick={handleSave} className="px-14" variant="contained" size="large" sx={{ textTransform: "none" }}>
                 Save
               </Button>
             </div>
