@@ -162,13 +162,13 @@ export default function Leads() {
 
   const handleRowSelection = (selection) => {
     if (selection.length > 0) {
-      setSelectedRowId(selection[0]);  // Store the ID of the selected row
+      setSelectedRowId(selection[0]);  // Directly set the ID of the selected row
       setIsCheckboxSelected(true);     // Mark the checkbox as selected
     } else {
       setIsCheckboxSelected(false);    // If no checkbox is selected, update the state
     }
   };
-
+  
   const handleRowClick = (params) => {
     if (isCheckboxSelected && params.id === selectedRowId) {
       // Navigate to a new page with the selected row's ID
@@ -177,30 +177,29 @@ export default function Leads() {
   };
 
   const handleDelete = async () => {
-    const selectedRowData = data.find((row, index) => index === selectedRowId);
-
-    if (!selectedRowData) {
+    if (!selectedRowId) {
       console.error('No row selected for deletion');
       return;
     }
-
+  
     try {
       const token = localStorage.getItem('jwtToken');
       if (!token) {
         throw new Error('No token found');
       }
-
-      await axios.delete(`http://localhost:8080/leads/${selectedRowData.id}`, {
+  
+      await axios.delete(`http://localhost:8080/leads/${selectedRowId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      fetchData();
-      // After successful deletion from the backend, update the UI
+  
+      fetchData();  // Refresh data after deletion
     } catch (error) {
       console.error('Error deleting data:', error);
     }
   };
+  
   // console.log(data);
   const [viewMode, setViewMode] = useState('table');
   const [open, setOpen] = React.useState(false);

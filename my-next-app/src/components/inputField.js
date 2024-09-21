@@ -89,7 +89,7 @@ function InputField({ label, value = 5, width = "44rem", defaultValue = "",onCha
   }, [defaultValue]);
 
   useEffect(() => {
-    if (onChange) {
+    if (onChange && leadStatus && leadSource && stack && classMode && batchTimings && selectedValues.length > 0) {
       onChange({
         label,
         leadStatus,
@@ -101,7 +101,8 @@ function InputField({ label, value = 5, width = "44rem", defaultValue = "",onCha
         selectedValues,
       });
     }
-  }, [leadStatus, leadSource, stack, classMode, batchTimings, selectedDate, selectedValues]);
+  }, [leadStatus, leadSource, stack, classMode, batchTimings, selectedDate, selectedValues, onChange, label]);
+  
 
   // Handle pencil icon click
   const handlePencilClick = () => {

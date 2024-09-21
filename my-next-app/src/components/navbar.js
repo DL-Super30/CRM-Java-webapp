@@ -72,7 +72,7 @@ function DrawerAppBar(props) {
           <Image src="/skillcapital.png" width={300} height={150} alt="Skill Capital logo" style={{ marginRight: 'auto' }} />
           <Box sx={{ display: { xs: 'none', sm: 'block', overflow: 'hidden',whiteSpace: 'nowrap',maxWidth: '100%',} }}>
             {navItems.map((item) => (
-              <Link href={item === 'Home' ? '/dashboard' : item === 'Leads' ? '/Leads' : `/${item.toLowerCase()}`} passHref key={item}>
+              <Link href={item === 'Home' ? '/dashboard' : item === 'Leads' ? '/Leads' :  item === 'Opportunities' ? '/Opportunities' :`/${item.toLowerCase()}`} passHref key={item}>
               <Button key={item} sx={{ color: '#000000', fontSize: '17px',marginTop:'12px' }} className="nav-item-button hover-bg ">
                 {item}
                 <Image src="/downarrow.svg" height={5} width={10} alt={`${item} dropdown icon`} />

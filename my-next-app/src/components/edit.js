@@ -12,6 +12,13 @@ import { useRouter } from 'next/navigation';
 export default function EditPage({ id }) {
   const idInt = parseInt(id, 10);
   const [formData, setFormData] = useState({});
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value, 
+    }));
+  };
   const handleSave = async (id) => {
     try {
       const token = localStorage.getItem('jwtToken');
@@ -313,35 +320,35 @@ export default function EditPage({ id }) {
           {activeSection === "Details" && (
             <>
               <div className="flex justify-between">
-                <InputField label="Name" value={5} defaultValue={data.name} />
-                <InputField label="Lead Status" value={5} defaultValue={data.leadStatus} />
+                <InputField label="Name" value={5} defaultValue={data.name} onChange={handleInputChange}  />
+                <InputField label="Lead Status" value={5} defaultValue={data.leadStatus} onChange={handleInputChange}  />
               </div>
               <div className="flex justify-between">
-                <InputField label="CC" defaultValue={data.cc} />
-                <InputField label="Lead Source" defaultValue={data.leadSource} />
+                <InputField label="CC" defaultValue={data.cc} onChange={handleInputChange}  />
+                <InputField label="Lead Source" defaultValue={data.leadSource} onChange={handleInputChange}  />
               </div>
               <div className="flex justify-between">
-                <InputField label="Phone" defaultValue={data.phone} />
-                <InputField label="Stack" defaultValue={data.stack} />
+                <InputField label="Phone" defaultValue={data.phone} onChange={handleInputChange}  />
+                <InputField label="Stack" defaultValue={data.stack} onChange={handleInputChange}  />
               </div>
               <div className="flex justify-between">
-                <InputField label="Email" defaultValue={data.email} />
+                <InputField label="Email" defaultValue={data.email} onChange={handleInputChange} />
                 <InputField label="Course" defaultValue={Array.isArray(data.courses)
                   ? data.courses.length === 1
                     ? data.courses[0]
                     : data.courses.join(', ')
-                  : ''} />
+                  : ''} onChange={handleInputChange} />
               </div>
               <div className="flex justify-between">
-                <InputField label="Fee Quoted" defaultValue={data.feeQuoted} />
-                <InputField label="Class Mode" defaultValue={data.classmode} />
+                <InputField label="Fee Quoted" defaultValue={data.feeQuoted} onChange={handleInputChange}  />
+                <InputField label="Class Mode" defaultValue={data.classmode} onChange={handleInputChange}  />
               </div>
               <div className="flex justify-between">
-                <InputField label="Batch Timing" defaultValue={data.batchTiming} />
-                <InputField label="Next FollowUp" defaultValue={data.nextFollowUp} />
+                <InputField label="Batch Timing" defaultValue={data.batchTiming} onChange={handleInputChange}  />
+                <InputField label="Next FollowUp" defaultValue={data.nextFollowUp} onChange={handleInputChange}  />
               </div>
               <div className="flex justify-between">
-                <InputField label="Description" width="90rem" defaultValue={data.description} />
+                <InputField label="Description" width="90rem" defaultValue={data.description} onChange={handleInputChange}  />
               </div>
             </>
           )}
