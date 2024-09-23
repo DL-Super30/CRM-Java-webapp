@@ -10,6 +10,69 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
 export default function EditPage({ id }) {
+  const options = [
+    { name: "HRManager", id: 1 },
+    { name: "HRBusinessPartner", id: 2 },
+    { name: "HRGeneralistCoreHR", id: 3 },
+    { name: "HRAnalytics", id: 4 },
+    { name: "SpokenEnglish", id: 5 },
+    { name: "PublicSpeaking", id: 6 },
+    { name: "CommunicationSkills", id: 7 },
+    { name: "SoftSkills", id: 8 },
+    { name: "PersonalityDevelopment", id: 9 },
+    { name: "Aptitude", id: 10 },
+    { name: "IELTS", id: 11 },
+    { name: "TOEFL", id: 12 },
+    { name: "PTE", id: 13 },
+    { name: "GRE", id: 14 },
+    { name: "GMAT", id: 15 },
+    { name: "RecruitmentSpecialist", id: 16 },
+    { name: "PayrollSpecialist", id: 17 },
+    { name: "LearningAndDevelopment", id: 18 },
+    { name: "Others", id: 19 },
+    { name: "Finance", id: 20 },
+    { name: "CompetitiveExams", id: 21 }
+  ];
+
+  const leadStatusOptions = ["Not Contacted", "Attempted", "Warm Lead", "Cold Lead"];
+  const leadSourceOptions = [
+    "Select Lead Source",
+    "None",
+    "WalkIn",
+    "StudentReferal",
+    "Demo",
+    "WebSite",
+    "WebsiteChat",
+    "InboundCall",
+    "GoogleAdWords",
+    "FacebookAds",
+    "WhatsAppDigitalLync",
+    "GoogleMyBusiness"
+  ];
+  const stackOptions = [
+    "Select Stack",
+    "LifeSkills",
+    "StudyAboard",
+    "HR"
+  ];
+  const ClassModeOptions = ["Select Class Mode", "InternationalOnline", "IndiaOnline", "BLRClassRoom", "HYDClassRoom"];
+  const BatchTimingsOptions = [
+    { value: "SEVEN_AM_TO_EIGHT_AM", label: "7AM-8AM" },
+    { value: "EIGHT_AM_TO_NINE_AM", label: "8AM-9AM" },
+    { value: "NINE_AM_TO_TEN_AM", label: "9AM-10AM" },
+    { value: "TEN_AM_TO_ELEVEN_AM", label: "10AM-11AM" },
+    { value: "ELEVEN_AM_TO_TWELVE_PM", label: "11AM-12AM" },
+    { value: "TWELVE_PM_TO_ONE_PM", label: "12PM-1PM" },
+    { value: "ONE_PM_TO_TWO_PM", label: "1PM-2PM" },
+    { value: "TWO_PM_TO_THREE_PM", label: "2PM-3PM" },
+    { value: "THREE_PM_TO_FOUR_PM", label: "3PM-4PM" },
+    { value: "FOUR_PM_TO_FIVE_PM", label: "4PM-5PM" },
+    { value: "FIVE_PM_TO_SIX_PM", label: "5PM-6PM" },
+    { value: "SIX_PM_TO_SEVEN_PM", label: "6PM-7PM" },
+    { value: "SEVEN_PM_TO_EIGHT_PM", label: "7PM-8PM" },
+    { value: "EIGHT_PM_TO_NINE_PM", label: "8PM-9PM" },
+  ];
+
   const idInt = parseInt(id, 10);
   const [formData, setFormData] = useState({});
   const handleInputChange = (e) => {

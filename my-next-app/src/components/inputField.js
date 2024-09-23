@@ -5,7 +5,7 @@ import SingleSelectDropdown from './SingleSelectComponent';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"; // Import DatePicker CSS
 
-function InputField({ label, value = 5, width = "44rem", defaultValue = "",onChange }) {
+function InputField({ label, value = 5, width = "44rem", defaultValue = "",onChange}) {
   const [showPencil, setShowPencil] = useState(true);
   const [selectedValues, setSelectedValues] = useState([]);
   const [leadStatus, setLeadStatus] = useState(defaultValue);
@@ -78,7 +78,32 @@ function InputField({ label, value = 5, width = "44rem", defaultValue = "",onCha
     { value: "SEVEN_PM_TO_EIGHT_PM", label: "7PM-8PM" },
     { value: "EIGHT_PM_TO_NINE_PM", label: "8PM-9PM" },
   ];
-
+  const opportunityStatusOptions = ["Select Opportunity Status","Visiting","Visited","Demo attended","Lost Opportunity"];
+  const opportunityStageOptions = ["Select Opportunity Stage","Advanced Discussion","Ready To Join","Visiting","Fees Negotiation","Batch Allocation","Intersted in Demo","Need Time This week","Need Time Next Week","Need Time This Month","Needs Time Next Month","Special Requirements","Payment Link Sent","Closed Won(Registered)","Busy & Asked a call back","Closed Lost"];
+  const demoAttendedStage =[
+    "None",
+    "Ready to Join",
+    "Advanced Discussion",
+    "Call Not Answered",
+    "Visiting",
+    "Fees Negotiation",
+    "Batch Allocation",
+    "Need time this Week",
+    "Need Time Next Week",
+    "Need Time This Month",
+    "Need Time Next Month",
+    "Special Requirements",
+    "Closed Won(Registered)",
+    "Closed Lost(Cold Lead)"
+  ];
+  const lostOppertunityReason =[
+    "None",
+    "Invalid Number",
+    "Not Interested",
+    "Joined another institute",
+    "Asking free course",
+    "Pay after Placement",
+  ];
   // Sync default values with state whenever defaultValue changes
   useEffect(() => {
     setLeadStatus(defaultValue);
@@ -127,7 +152,7 @@ function InputField({ label, value = 5, width = "44rem", defaultValue = "",onCha
 
   return (
     <div className={`mt-${value}`}>
-      <p className="text text-[#A8C6DF]">{label}</p>
+      <p className="text text-[#81b8e5]">{label}</p>
       <div className="relative" style={{ width }}>
         {label === 'Course' && !showPencil ? (
           <MultiselectComponent
@@ -142,10 +167,34 @@ function InputField({ label, value = 5, width = "44rem", defaultValue = "",onCha
             defaultValue={leadStatus}
             onChange={setLeadStatus}
           />
-        ) : label === 'Lead Source' && !showPencil ? (
+        ) : label === 'Opportunity Status' && !showPencil ? (
+          <SingleSelectDropdown
+            options={opportunityStatusOptions}
+            defaultValue={leadStatus}
+            onChange={setLeadStatus}
+          />
+        ): label === 'Lead Source' && !showPencil ? (
           <SingleSelectDropdown
             options={leadSourceOptions}
             defaultValue={leadSource}
+            onChange={setLeadSource}
+          />
+        ): label === 'Opportunity Stage' && !showPencil ? (
+          <SingleSelectDropdown
+            options={opportunityStageOptions}
+            defaultValue={leadSource}
+            onChange={setLeadSource}
+          />
+        ): label === 'Demo Attended Stage' && !showPencil ? (
+          <SingleSelectDropdown
+            options={demoAttendedStage}
+            defaultValue={leadSource}
+            onChange={setLeadSource}
+          />
+        ): label === 'Lost Opportunity Reason' && !showPencil ? (
+          <SingleSelectDropdown
+            options={demoAttendedStage}
+            defaultValue={lostOppertunityReason}
             onChange={setLeadSource}
           />
         ) : label === 'Stack' && !showPencil ? (
